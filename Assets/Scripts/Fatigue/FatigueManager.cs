@@ -7,7 +7,7 @@ public class FatigueManager : MonoBehaviour
     [SerializeField] private float fatigueGrowthPerSecond = 0.02f; //Fatigue increase as a percentage value per second
     bool isDrainingFatigue = true; //Should probably only drain fatigue when talking to clients
 
-    private void Start()
+    private void Awake()
     {
         instance = this;
     }
@@ -36,11 +36,19 @@ public class FatigueManager : MonoBehaviour
     public void RemoveFatigue(float fatigue_value)
     {
         fatigue -= fatigue_value;
+        if (fatigue < 0)
+        {
+            fatigue = 0;
+        }
     }
 
     public void AddFatigue(float fatigue_value)
     {
         fatigue += fatigue_value;
+        if (fatigue > 1)
+        {
+            fatigue = 1;
+        }
     }
 
     public void SetFatigueDrain(bool should_drain)

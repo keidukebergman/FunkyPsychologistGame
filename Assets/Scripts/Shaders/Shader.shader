@@ -2,16 +2,17 @@ Shader "Custom/Shader"
 {
     Properties
     {
-        _Closeness("Closeness", Float) = 1
+        _Separation("Separation", Float) = 1
         _Curvature("Curvature", Float) = 1
         _Color("Color", Color) = (0,0,0,0)
+        [MaterialToggle] _Active("Active", Float) = 0
     }
     SubShader
     {
         Tags { "RenderPipeline" = "UniversalPipeline"}
         Pass
         {
-            Name "FullscreenExample"
+            Name "Fullscreen"
             ZWrite Off
             Cull Off
             Blend Off 
@@ -22,10 +23,10 @@ Shader "Custom/Shader"
             #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
             #include "Packages/com.unity.render-pipelines.core/Runtime/Utilities/Blit.hlsl"
 
-            float _Closeness;
+            float _Separation;
             float _Curvature;
             float4 _Color;
-            bool _Enabled;
+            float _Active;
 
             float4 Frag(Varyings input) : SV_Target
             {
@@ -33,13 +34,15 @@ Shader "Custom/Shader"
                 float2 uv = UnityStereoTransformScreenSpaceTex(input.texcoord);
                 half4 color = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_PointClamp, uv);
                 float2 uv_position = uv;
-                float cutoff = 1-(_Closeness / 2);
                 float bend_power = _Curvature * (uv.x - 0) * (uv.x -1);
                 float bend_cutoff = bend_power;
                 
-                if (uv.y > bend_cutoff + 0.4999 || uv.y < 0.5 - bend_cutoff)
+                if (_Active == 1)
                 {
-                      color.rgb = _Color;   
+                    if (uv.y > bend_cutoff + 0.4999 + _Separation || uv.y < 0.5 - bend_cutoff - _Separation)
+                    {
+                          color.rgb = _Color.xyz;   
+                    }
                 }
 
                 return color;
