@@ -25,6 +25,7 @@ Shader "Custom/Shader"
             float _Closeness;
             float _Curvature;
             float4 _Color;
+            bool _Enabled;
 
             float4 Frag(Varyings input) : SV_Target
             {
@@ -33,10 +34,10 @@ Shader "Custom/Shader"
                 half4 color = SAMPLE_TEXTURE2D_X(_BlitTexture, sampler_PointClamp, uv);
                 float2 uv_position = uv;
                 float cutoff = 1-(_Closeness / 2);
-                float bend_power = _Curvature * (uv.x - 0) * (uv.y -1);
+                float bend_power = _Curvature * (uv.x - 0) * (uv.x -1);
                 float bend_cutoff = bend_power;
                 
-                if (uv.y > bend_cutoff && uv.y < -bend_cutoff)
+                if (uv.y > bend_cutoff + 0.4999 || uv.y < 0.5 - bend_cutoff)
                 {
                       color.rgb = _Color;   
                 }

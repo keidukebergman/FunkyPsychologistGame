@@ -36,8 +36,10 @@ public class DistractionManager : MonoBehaviour
     public void OnInteractWithInteractable(Interactable interactable, float focus_power)
     {
         if (interactable == null) return;
+        //If we havent seen this interaction item before, add it to the list
         if (!distractionEntities.ContainsKey(interactable)) distractionEntities.Add(interactable, new DistractionEntity(0, 0, interactable));
         DistractionEntity distractionEntity = distractionEntities[interactable];
+        //If the interaction item is not the same as the previous, maybe we should penalize the player? Or something.
         if (interactable != latest_interactable) distractionEntity.switchPenalty = 1;
     }
 

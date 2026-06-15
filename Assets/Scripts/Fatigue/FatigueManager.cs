@@ -5,7 +5,7 @@ public class FatigueManager : MonoBehaviour
     public static FatigueManager instance;
     [SerializeField] private float fatigue = 0f; //Fatigue as a percentage. 
     [SerializeField] private float fatigueGrowthPerSecond = 0.02f; //Fatigue increase as a percentage value per second
-    bool isDrainingFatigue = false; //Should probably only drain fatigue when talking to clients
+    bool isDrainingFatigue = true; //Should probably only drain fatigue when talking to clients
 
     private void Start()
     {
