@@ -24,6 +24,8 @@ public class DistractionManager : MonoBehaviour
     [SerializeField] private Dictionary<Interactable, DistractionEntity> distractionEntities = new Dictionary<Interactable, DistractionEntity>();
     private Interactable latestInteractable;
     [SerializeField] private float borednessIncreasePerSecond = 0.1f;
+    [SerializeField] private float borednessDecreasePerActiveSecond = 0.3f;
+    [SerializeField] private float borednessDecreasePerAmbientSecond = 0.1f;
 
     private void Awake()
     {
@@ -32,6 +34,10 @@ public class DistractionManager : MonoBehaviour
     private void Start()
     {
         fatigueManager = FatigueManager.instance;
+        foreach (var key in distractionEntities.Keys)
+        {
+                distractionEntities[key].boredness = Mathf.MoveTowards(distractionEntities[key].boredness, 0, borednessDecreasePerAmbientSecond * Time.deltaTime);
+        }
     }
 
     public void OnInteractWithPersistentInteractable(Interactable interactable, float focus_power)
@@ -57,10 +63,9 @@ public class DistractionManager : MonoBehaviour
         {
             if(key.Equals(interactable) == false)
             {
-                distractionEntities[key].boredness = Mathf.MoveTowards(distractionEntities[key].boredness, 0, borednessIncreasePerSecond * Time.deltaTime); 
+                distractionEntities[key].boredness = Mathf.MoveTowards(distractionEntities[key].boredness, 0, borednessDecreasePerActiveSecond * Time.deltaTime); 
             }
         }
         distractionEntities[interactable] = distractionEntity;
     }
-
 }

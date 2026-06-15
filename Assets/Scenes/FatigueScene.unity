@@ -705,8 +705,8 @@ MonoBehaviour:
   fatigueManager: {fileID: 1832543854}
   vignetteMaterial: {fileID: 2100000, guid: 4ed2ba7273eb8e647a911a8771badd50, type: 2}
   max_curvature: 0
-  min_curvature: -2
-  max_separation: 0
+  min_curvature: -3
+  max_separation: 3
   min_separation: 0
 --- !u!1 &1176533711
 GameObject:

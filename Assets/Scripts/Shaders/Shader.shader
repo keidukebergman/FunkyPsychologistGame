@@ -5,6 +5,7 @@ Shader "Custom/Shader"
         _Separation("Separation", Float) = 1
         _Curvature("Curvature", Float) = 1
         _Color("Color", Color) = (0,0,0,0)
+        _Softness("softness", Float) = 0.5
         [MaterialToggle] _Active("Active", Float) = 0
     }
     SubShader
@@ -27,6 +28,7 @@ Shader "Custom/Shader"
             float _Curvature;
             float4 _Color;
             float _Active;
+            float _Softness;
 
             float4 Frag(Varyings input) : SV_Target
             {
@@ -39,10 +41,19 @@ Shader "Custom/Shader"
                 
                 if (_Active == 1)
                 {
-                    if (uv.y > bend_cutoff + 0.4999 + _Separation || uv.y < 0.5 - bend_cutoff - _Separation)
-                    {
-                          color.rgb = _Color.xyz;   
-                    }
+                    float upper_edge = bend_power + 0.4999 + _Separation;
+                    float lower_edge = 0.5  - bend_power - _Separation;
+                    float dist_from_upper = upper_edge - uv.y;
+                    float dist_from_lower = uv.y - lower_edge;
+
+                    float inside = min(dist_from_upper, dist_from_lower);
+
+                    float softness = _Softness; 
+                    float t = saturate(inside / softness);
+
+                    float blend = smoothstep(0.0, 1.0, t);
+
+                    color.rgb = lerp(_Color.rgb, color.rgb, blend);
                 }
 
                 return color;
