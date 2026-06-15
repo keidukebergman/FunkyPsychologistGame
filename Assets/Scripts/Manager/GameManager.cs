@@ -11,10 +11,15 @@ public class GameManager : MonoBehaviour
     private int m_gameStateID;
 
     private PlayerInput m_input;
+    private CallManager m_callManager;
+
+    public CallManager CallManager => m_callManager;
 
     void Awake()
     {
         m_input = new PlayerInput();
+
+        m_callManager = FindAnyObjectByType<CallManager>();
 
         foreach (var state in m_gameStates)
             state.Initialize(this, m_input);
@@ -52,6 +57,6 @@ public class GameManager : MonoBehaviour
         m_gameState.Enter();
 
 
-        //Debug.Log("Entering " + m_gameState.name);
+        Debug.Log("Entering " + m_gameState.name);
     }
 }
