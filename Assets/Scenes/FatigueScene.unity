@@ -1210,7 +1210,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a020114948ad144925ccd49c614dc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  borednessIncreasePerSecond: 0.3
+  borednessIncreasePerActiveSecond: 0.1
+  borednessIncreasePerSingleInteraction: 0.2
+  borednessDecreasePerAmbientSecond: 0.1
+  borednessDecreasePerSingleInteraction: 0.3
+  borednessDecreasePerActiveSecond: 0.3
 --- !u!1 &1769785133
 GameObject:
   m_ObjectHideFlags: 0
@@ -1321,6 +1325,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   fatigue: 0
   fatigueGrowthPerSecond: 0.2
+  fatigueRestorationPerSecond: 0.9
+  sleepTime: 3
 --- !u!4 &1832543855
 Transform:
   m_ObjectHideFlags: 0
