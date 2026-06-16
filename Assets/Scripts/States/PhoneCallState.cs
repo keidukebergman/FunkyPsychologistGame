@@ -1,24 +1,39 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Call State", menuName = "Scriptables/Game States/Call", order = 0)]
 public class PhoneCallState : GameState
 {
     [SerializeField] private float _placeDelay = .5f;
-    
+    [Space]
+    [SerializeField] private float _mhmmSatisfactionBoost = .02f;
+
     CallManager m_callManager;
+    ClientManager m_clientManager;
+
+    FatigueManager m_fatigueManager;
 
     private float m_placeDelayTime;
     private bool m_placingPhone;
 
-    public override void Initialize(GameManager game, PlayerInput player)
+    private bool FellAsleep { get; set; }
+
+    public override void Initialize(GameManager game, Player player, PlayerInput input)
     {
-        base.Initialize(game, player);
+        base.Initialize(game, player, input);
         m_callManager = game.CallManager;
+        m_clientManager = game.ClientManager;
+
+        m_fatigueManager = player.GetComponentInChildren<FatigueManager>();
+        m_fatigueManager.OnSleep += OnSleep;
+        FellAsleep = false;
     }
 
     public override void Enter()
     {
-        m_callManager.PlayCall();
+        var client = m_clientManager.PullClient();
+
+        m_callManager.PlayCall(client);
 
         m_placingPhone = false;
         m_placeDelayTime = _placeDelay;
@@ -30,23 +45,60 @@ public class PhoneCallState : GameState
         {
             if (m_callManager.CallOver)
             {
-                m_placingPhone = true;
-                m_callManager.PlaceSFX();
-            }
-        }
-        else
-        {
-            if (m_placeDelayTime <= 0)
-            {
-                m_game.ChangeState(0);
+                OnCallOver();
             }
             else
-                m_placeDelayTime -= Time.deltaTime;
+            {
+                DuringPhoneCall();
+            }
         }
+        else PlaceDelay();
     }
 
     public override void Exit()
     {
+        m_callManager.StopCall();
+    }
 
+    private void DuringPhoneCall()
+    {
+        if (FellAsleep)
+        {
+            m_callManager.PlaceSFX();
+            m_game.ChangeState(3);
+            return;
+        }
+
+        if (m_input.MouseRightDown)
+        {
+            if (m_player.Nod())
+                m_callManager.OnSatisfied(_mhmmSatisfactionBoost);
+        }
+    }
+
+    private void OnSleep()
+    {
+        FellAsleep = true;
+    }
+
+    private void OnCallOver()
+    {
+        m_clientManager.ConfirmClientIsSatisfied(m_callManager.ClientSatisfaction);
+
+        m_placingPhone = true;
+        m_callManager.PlaceSFX();
+    }
+
+    private void PlaceDelay()
+    {
+        if (m_placeDelayTime <= 0)
+        {
+            if (m_clientManager.NoMoreClients)
+                m_game.ChangeState(2);
+            else
+                m_game.ChangeState(0);
+        }
+        else
+            m_placeDelayTime -= Time.deltaTime;
     }
 }

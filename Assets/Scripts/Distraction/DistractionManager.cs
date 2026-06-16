@@ -35,6 +35,8 @@ public class DistractionManager : MonoBehaviour
     [SerializeField] private float borednessDecreasePerSingleInteraction = 0.3f;
     [SerializeField] private float borednessDecreasePerActiveSecond = 0.3f;
 
+    bool canAffectFatigue = true;
+
     private void Awake()
     {
         instance = this;
@@ -48,9 +50,27 @@ public class DistractionManager : MonoBehaviour
         }
     }
 
+    public void StartCall()
+    {
+        canAffectFatigue = true;
+    }
+    public void EndCall()
+    {
+        canAffectFatigue = false;
+    }
+    public void Win ()
+    {
+        canAffectFatigue = false;
+    }
+    public void Lose()
+    {
+        canAffectFatigue = false;
+    }
+
     public void OnInteractWithPersistentInteractable(Interactable interactable, float focus_power)
     {
         if (interactable == null) return;
+        if (canAffectFatigue != true) return;
         //If we havent seen this interaction item before, add it to the list
         if (!distractionEntities.ContainsKey(interactable)) distractionEntities.Add(interactable, new DistractionEntity(0, 0, interactable));
         DistractionEntity distractionEntity = distractionEntities[interactable];
@@ -64,7 +84,7 @@ public class DistractionManager : MonoBehaviour
         fatigueManager.RemoveFatigue(focus_power * (1 - distractionEntity.boredness));
         //Up that boredness, dude!
         distractionEntity.boredness = Mathf.MoveTowards(distractionEntity.boredness, 1, borednessIncreasePerActiveSecond * Time.deltaTime);
-        print(distractionEntity.boredness);
+        //print(distractionEntity.boredness);
 
         //Remove boredness from other items
         foreach (var key in distractionEntities.Keys)
@@ -80,6 +100,7 @@ public class DistractionManager : MonoBehaviour
     public void OnInteractWithSingleUseInteractable(Interactable interactable, float focus_power)
     {
         if (interactable == null) return;
+        if (canAffectFatigue != true) return;
         //If we havent seen this interaction item before, add it to the list
         if (!distractionEntities.ContainsKey(interactable)) distractionEntities.Add(interactable, new DistractionEntity(0, 0, interactable));
         DistractionEntity distractionEntity = distractionEntities[interactable];
