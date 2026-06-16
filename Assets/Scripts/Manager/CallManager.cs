@@ -16,11 +16,11 @@ public class CallManager : MonoBehaviour
 
     }
 
-    public void PlayCall()
+    public void PlayCall(Client p_client)
     {
         CallOver = false;
 
-        m_source.clip = m_calls[Random.Range(0, m_calls.Length)];
+        m_source.clip = p_client.Speeches[0].Clip; //m_calls[Random.Range(0, m_calls.Length)];
 
         m_source.Play();
     }
