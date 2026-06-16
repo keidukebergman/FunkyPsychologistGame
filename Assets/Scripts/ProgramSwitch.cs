@@ -12,10 +12,7 @@ public class ProgramSwitch : MonoBehaviour
 {
     [SerializeField] SingleGifPlayer programScript;
     [SerializeField] ProgramSwitchScript clientsScript;
-    [SerializeField] GameObject gameObject;
-    public GameObject myPrefab;
     public GameObject myPrefabPlayer;
-    public Transform uiParentCanvas;
 
     public string[] nameValuesArray;
     public string[] nameValuesEntertainment;
@@ -104,7 +101,7 @@ public class ProgramSwitch : MonoBehaviour
         if (tvTurnedOn == true)
         {
             
-            int entProgram = UnityEngine.Random.Range(0, 3);
+            int entProgram = UnityEngine.Random.Range(0, 5);
             programScript.gifPath = nameValuesEntertainment[entProgram];
             GameObject clonePlayer = Instantiate(myPrefabPlayer);
             GetComponent<SingleGifPlayer>().enabled = false;
@@ -121,7 +118,7 @@ public class ProgramSwitch : MonoBehaviour
     public void RandomEntertainment()
     {
         entertainment = true;
-        int entProgram = UnityEngine.Random.Range(0, 3);
+        int entProgram = UnityEngine.Random.Range(0, 4);
         programScript.gifPath = nameValuesEntertainment[entProgram];
 
         GameObject clonePlayer = Instantiate(myPrefabPlayer);

@@ -1,9 +1,9 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class DrawDraw : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler
+{
     //This is the data model used to store our draw settings
     DrawSettings drawSettings;
     [SerializeField] private AudioSource audioSource;
@@ -29,7 +29,8 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
     //The rectTransform of the GameObject this script is attached to
     RectTransform rectTransform;
 
-    void Awake() {
+    void Awake()
+    {
         rectTransform = GetComponent<RectTransform>();
         drawImage = GetComponent<Image>();
 
@@ -45,20 +46,19 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     //Call this whenever the image this script is attached has changed
     //most uses can probably simply call initalize at the beginning
-    public void Initialize() {
+    public void Initialize()
+    {
         drawSprite = drawImage.sprite;
         drawTexture = drawSprite.texture;
 
         // fill the array with our reset color so it can be easily reset later on
-        resetColorsArray = new Color[(int)drawSprite.rect.width * (int)drawSprite.rect.height];
+        resetColorsArray = new Color[(int)drawTexture.width * (int)drawSprite.rect.height];
         for (int x = 0; x < resetColorsArray.Length; x++)
             resetColorsArray[x] = resetColor;
     }
 
-    void Update() {
-
-        //Debug.Log("Mouse Screen Pos: " + Input.mousePosition);
-        Debug.Log("Over UI: " + IsPointerOverUIObject());
+    void Update()
+    {
         KeyboardInput();
 
         if (Input.GetMouseButtonDown(1))
@@ -75,15 +75,8 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
         }
     }
 
-    private bool IsPointerOverUIObject()
+    void KeyboardInput()
     {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
-        List<RaycastResult> results = new List<RaycastResult>();
-        EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
-        return results.Count > 0;
-    }
-    void KeyboardInput() {
         // We have different undo/redo controls in the editor,
         // so that way you don't accidentally undo something in the scene
 #if UNITY_EDITOR
@@ -93,7 +86,8 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         if (isShiftHeldDown &&
             isZHeldDown &&
-            drawSettings.CanUndo()) {
+            drawSettings.CanUndo())
+        {
             // if there's something to undo, pull the last state off of the stack, and apply those changes
             currentColors = drawSettings.Undo(drawTexture.GetPixels32());
             ApplyCurrentColors();
@@ -101,7 +95,8 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
         if (isShiftHeldDown &&
             isYHeldDown &&
-            drawSettings.CanRedo()) {
+            drawSettings.CanRedo())
+        {
             currentColors = drawSettings.Redo(drawTexture.GetPixels32());
             ApplyCurrentColors();
         }
@@ -125,15 +120,19 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
 
     // Pass in a point in PIXEL coordinates
     // Changes the surrounding pixels of the pixelPosition to the drawSetting.drawColor
-    public void Paint(Vector2 pixelPosition) {
+    public void Paint(Vector2 pixelPosition)
+    {
         //grab the current image state
         Debug.Log(pixelPosition);
         currentColors = drawTexture.GetPixels32();
 
-        if (previousDragPosition == Vector2.zero) {
+        if (previousDragPosition == Vector2.zero)
+        {
             // If this is the first frame in a drag, color the pixels around the mouse
             MarkPixelsToColour(pixelPosition);
-        } else {
+        }
+        else
+        {
             // Color between where we are this frame, and where our mouse was last frame
             ColorBetween(previousDragPosition, pixelPosition);
         }
@@ -143,23 +142,27 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
     }
 
     //Color the pixels around the centerPoint
-    public void MarkPixelsToColour(Vector2 centerPixel) {
+    public void MarkPixelsToColour(Vector2 centerPixel)
+    {
         int centerX = (int)centerPixel.x;
         int centerY = (int)centerPixel.y;
 
-        for (int x = centerX - drawSettings.lineWidth; x <= centerX + drawSettings.lineWidth; x++) {
+        for (int x = centerX - drawSettings.lineWidth; x <= centerX + drawSettings.lineWidth; x++)
+        {
             // Check if the X wraps around the image, so we don't draw pixels on the other side of the image
-            if (x >= (int)drawSprite.rect.width || x < 0)
+            if (x >= (int)drawTexture.width || x < 0)
                 continue;
 
-            for (int y = centerY - drawSettings.lineWidth; y <= centerY + drawSettings.lineWidth; y++) {
+            for (int y = centerY - drawSettings.lineWidth; y <= centerY + drawSettings.lineWidth; y++)
+            {
                 MarkPixelToChange(x, y);
             }
         }
     }
 
     // Mark the pixels to be changed from startPoint to endPoint
-    public void ColorBetween(Vector2 startPoint, Vector2 endPoint) {
+    public void ColorBetween(Vector2 startPoint, Vector2 endPoint)
+    {
         // Get the distance from start to finish
         float distance = Vector2.Distance(startPoint, endPoint);
 
@@ -168,47 +171,55 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
         // Calculate how many times we should interpolate between start_point and end_point based on the amount of time that has passed since the last update
         float lerp_steps = 1 / distance;
 
-        for (float lerp = 0; lerp <= 1; lerp += lerp_steps) {
+        for (float lerp = 0; lerp <= 1; lerp += lerp_steps)
+        {
             cur_position = Vector2.Lerp(startPoint, endPoint, lerp);
             MarkPixelsToColour(cur_position);
         }
     }
 
-    public void MarkPixelToChange(int x, int y) {
+    public void MarkPixelToChange(int x, int y)
+    {
         // Need to transform x and y coordinates to flat coordinates of array
-        int arrayPosition = (y * (int)drawSprite.rect.width) + x;
-        currentColors[arrayPosition] = Color.red;
+        int arrayPosition = (y * (int)drawTexture.width) + x;
+
         // Check if this is a valid position
-        if (arrayPosition > currentColors.Length || arrayPosition < 0) {
+        if (arrayPosition < 0 || arrayPosition >= currentColors.Length)
             return;
-        }
+
+        currentColors[arrayPosition] = Color.red;
 
         currentColors[arrayPosition] = drawSettings.drawColor;
     }
 
-    public void ApplyCurrentColors() {
+    public void ApplyCurrentColors()
+    {
         drawTexture.SetPixels32(currentColors);
         drawTexture.Apply();
     }
 
     // Changes every pixel to be the reset colour
-    public void ResetTexture() {
+    public void ResetTexture()
+    {
         drawTexture.SetPixels(resetColorsArray);
         drawTexture.Apply();
     }
 
     //We started a new drag, save the current state so we can go back to this state
-    public void OnBeginDrag(PointerEventData eventData) {
+    public void OnBeginDrag(PointerEventData eventData)
+    {
         Debug.Log("Begin Drag");
         drawSettings.AddUndo(drawTexture.GetPixels32());
     }
 
-    public void OnDrag(PointerEventData eventData) {
+    public void OnDrag(PointerEventData eventData)
+    {
         Debug.Log("Dragging");
         Vector2 localCursor = Vector2.zero;
         //This method transforms the mouse position, to a position relative to the image's pivot
         if (!RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            rectTransform, eventData.position, eventData.pressEventCamera, out localCursor)) {
+            rectTransform, eventData.position, eventData.pressEventCamera, out localCursor))
+        {
             return;
         }
 
@@ -216,12 +227,15 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
         if (localCursor.x < rectTransform.rect.width &&
             localCursor.y < rectTransform.rect.height &&
             localCursor.x > 0 &&
-            localCursor.y > 0) {
+            localCursor.y > 0)
+        {
             float rectToPixelScale = drawImage.sprite.rect.width / rectTransform.rect.width;
             localCursor = new Vector2(localCursor.x * rectToPixelScale, localCursor.y * rectToPixelScale);
             Paint(localCursor);
             previousDragPosition = localCursor;
-        } else {
+        }
+        else
+        {
             previousDragPosition = Vector2.zero;
         }
 
@@ -229,32 +243,39 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
     }
 
     //Reset the previosDragPosition so that our brush knows the next drag is a new line
-    public void OnEndDrag(PointerEventData eventData) {
+    public void OnEndDrag(PointerEventData eventData)
+    {
         previousDragPosition = Vector2.zero;
     }
 
     #region DrawSetting exposed variables
-    public void SetDrawColor(Color color) {
+    public void SetDrawColor(Color color)
+    {
         drawSettings.SetDrawColour(color);
     }
 
-    public Color GetDrawColor() {
+    public Color GetDrawColor()
+    {
         return drawSettings.drawColor;
     }
 
-    public void SetDrawLineWidth(int width) {
+    public void SetDrawLineWidth(int width)
+    {
         drawSettings.SetLineWidth(width);
     }
 
-    public int GetDrawLineWidth() {
+    public int GetDrawLineWidth()
+    {
         return drawSettings.lineWidth;
     }
 
-    public void SetDrawTransparency(float transparency) {
+    public void SetDrawTransparency(float transparency)
+    {
         drawSettings.SetAlpha(transparency);
     }
 
-    public float GetDrawTransparency() {
+    public float GetDrawTransparency()
+    {
         return drawSettings.transparency;
     }
     #endregion

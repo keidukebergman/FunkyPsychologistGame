@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
+public class DrawViewController1 : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
     //This is the data model used to store our draw settings
     DrawSettings drawSettings;
     [SerializeField] private AudioSource audioSource;
@@ -60,19 +60,6 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
         //Debug.Log("Mouse Screen Pos: " + Input.mousePosition);
         Debug.Log("Over UI: " + IsPointerOverUIObject());
         KeyboardInput();
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            drawSettings.AddUndo(drawTexture.GetPixels32());
-
-            ResetTexture();
-            previousDragPosition = Vector2.zero;
-
-            if (audioSource != null && clearSound != null)
-            {
-                audioSource.PlayOneShot(clearSound);
-            }
-        }
     }
 
     private bool IsPointerOverUIObject()
