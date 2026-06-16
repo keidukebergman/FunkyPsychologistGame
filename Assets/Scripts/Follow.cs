@@ -1,6 +1,7 @@
 using System;
-using UnityEngine;
 using System.Collections;
+using UnityEngine;
+using static UnityEngine.InputSystem.UI.VirtualMouseInput;
 
 public class Follow : MonoBehaviour
 {
@@ -14,12 +15,14 @@ public class Follow : MonoBehaviour
 
     private Vector3 targetPosition;
     private float initialZ;
-
+    public Texture2D cursorTexture;
+    public UnityEngine.CursorMode cursorMode = UnityEngine.CursorMode.Auto;
     void Start()
     {
+        Cursor.SetCursor(cursorTexture, Vector2.zero, cursorMode);
         // Lock and hide the cursor so it doesn't leave the game window
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = true;
 
         // Save the starting positions
         initialZ = transform.position.z;

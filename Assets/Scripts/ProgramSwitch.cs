@@ -1,0 +1,214 @@
+using System;
+using System.Linq;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.Audio;
+using System.Collections;
+using UnityImage = UnityEngine.UI.Image;
+using DrawingImage = System.Drawing.Image;
+
+
+public class ProgramSwitch : MonoBehaviour
+{
+    [SerializeField] SingleGifPlayer programScript;
+    [SerializeField] ProgramSwitchScript clientsScript;
+    [SerializeField] GameObject gameObject;
+    public GameObject myPrefab;
+    public GameObject myPrefabPlayer;
+    public Transform uiParentCanvas;
+
+    public string[] nameValuesArray;
+    public string[] nameValuesEntertainment;
+    public string[] nameValuesTelemarket = { "fidgetSpinner", "newtonsCradle" };
+
+    public float maxWaitTime = 5.0f;
+    public bool timerIsRunning = false;
+    public bool entertainment = false;
+    public bool callOngoing = false;
+    public bool afterCallSatisf = false;
+    public bool telemChoiceTime = false;
+    public bool telemChoiceTimer = true;
+    public bool distractionAppeared = false;
+    public bool tvTurnedOn = true;
+    public string[] clientOrder = { "Kaiju", "Boss" };
+    public string clientNameEnd = "null";
+    public int currentDist = 0;
+    public int currentClient = 0;
+    public int distrToBuy = 0;
+
+
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //If it's Kaiju time, then we do:
+
+        if (clientsScript.callOngoing == true && clientsScript.afterCallSatisf == false)
+        {
+            RandomEntertainment();
+        }
+        else if (clientsScript.callOngoing == false & clientsScript.afterCallSatisf == true)
+        {
+            entertainment = true;
+            var clientName = clientOrder[currentClient];
+
+            if (clientsScript.satisfaction == true)
+            {
+                clientNameEnd = "/" + clientName + "GoodEnd.gif";
+            }
+            else
+            {
+                clientNameEnd = "/" + clientName + "BadEnd.gif";
+            }
+
+            currentClient = currentClient + 1;
+            clientsScript.afterCallSatisf = false;
+            Satisfaction(clientNameEnd);
+        }
+        else if (clientsScript.callOngoing == false & clientsScript.afterCallSatisf == false & tvTurnedOn == false)
+        {
+            //int chooseProgram = UnityEngine.Random.Range(0,1);
+            //if (chooseProgram == 0)
+            //{
+            if (entertainment == false)
+            {
+                RandomEntertainment();
+            }
+            
+
+            //}
+            //else
+            //{
+            // Telemarket();
+            //}
+            // RandomEntertainment();
+
+        }
+       
+         // Same for other clients
+
+         
+    }
+
+
+    public void TurnOnTv()
+    {
+
+        if (tvTurnedOn == true)
+        {
+            
+            int entProgram = UnityEngine.Random.Range(0, 3);
+            programScript.gifPath = nameValuesEntertainment[entProgram];
+            GameObject clonePlayer = Instantiate(myPrefabPlayer);
+            GetComponent<SingleGifPlayer>().enabled = false;
+            clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
+            StartCoroutine(EntProgramTimer());
+            Destroy(clonePlayer, 5.0f);
+            tvTurnedOn = false;
+        }
+
+
+
+    }
+
+    public void RandomEntertainment()
+    {
+        entertainment = true;
+        int entProgram = UnityEngine.Random.Range(0, 3);
+        programScript.gifPath = nameValuesEntertainment[entProgram];
+
+        GameObject clonePlayer = Instantiate(myPrefabPlayer);
+        GetComponent<SingleGifPlayer>().enabled = false;
+        clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
+        StartCoroutine(EntProgramTimer());
+        Destroy(clonePlayer, 5.0f);
+
+    }
+
+    public void DistractionAppears()
+    {
+
+        GameObject.Find(nameValuesTelemarket[distrToBuy]).SetActive(true);
+        distrToBuy = distrToBuy + 1;
+    }
+
+    public void Telemarket()
+    {
+
+        programScript.gifPath = nameValuesTelemarket[currentDist];
+        currentDist = currentDist + 1;
+        telemChoiceTime = true;
+        GameObject clonePlayer = Instantiate(myPrefabPlayer);
+        GetComponent<SingleGifPlayer>().enabled = false;
+        clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
+        StartCoroutine(TelProgramTimer());
+        Destroy(clonePlayer, 5.0f);
+
+        programScript.gifPath = nameValuesTelemarket[currentDist];
+        currentDist = currentDist + 1;
+        GameObject clonePlayer2 = Instantiate(myPrefabPlayer);
+        GetComponent<SingleGifPlayer>().enabled = false;
+        clonePlayer2.GetComponent<SingleGifPlayer>().enabled = true;
+        StartCoroutine(TelProgramTimer());
+        Destroy(clonePlayer2, 5.0f);
+
+
+    }
+
+    public void Satisfaction(string clientEnd)
+    {
+        for (int i = 0; i < nameValuesArray.Length; i++)
+        {
+            if (nameValuesArray[i] == clientEnd)
+            {
+                entertainment = true;
+                Debug.Log(clientEnd);
+                programScript.gifPath = nameValuesArray[i];
+                GameObject clonePlayer = Instantiate(myPrefabPlayer);
+                GetComponent<SingleGifPlayer>().enabled = false;
+                clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
+                StartCoroutine(EntProgramTimer());
+                Destroy(clonePlayer, 5.0f);
+            }
+        }
+    }
+
+    IEnumerator TelProgramTimer()
+    {
+        float timeElapsed = 0f;
+        // 3. Loop every frame until the button is pressed OR time runs out
+        while (!Input.GetKeyDown(KeyCode.Keypad1) || !Input.GetKeyDown(KeyCode.Alpha1) && timeElapsed < maxWaitTime)
+        {
+            // Increase timer by the time passed since the last frame
+            timeElapsed += Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1) & distractionAppeared == false)
+            {
+                DistractionAppears();
+                distractionAppeared = true;
+            }
+
+            // Pause the coroutine until the next frame
+            yield return null;
+        }
+
+        telemChoiceTimer = false;
+        telemChoiceTime = false;
+        programScript.gifPath = "/black-screen.gif";
+        distractionAppeared = false;
+
+
+        yield break;
+    }
+    IEnumerator EntProgramTimer()
+    {
+        yield return new WaitForSeconds(maxWaitTime);
+        entertainment = false;
+    }
+}
