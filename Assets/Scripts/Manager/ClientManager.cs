@@ -11,6 +11,8 @@ public class ClientManager : MonoBehaviour
 
     public bool NoMoreClients => _waitingClients.Count == 0;
 
+    public Client CurrentClient { get; private set; }
+
     private void Awake()
     {
         _waitingClients = new List<Client>();
@@ -20,6 +22,12 @@ public class ClientManager : MonoBehaviour
 
     public Client PullClient() 
     {
-        return _waitingClients[Random.Range(0,_waitingClients.Count - 1)];
+        CurrentClient = _waitingClients[Random.Range(0,_waitingClients.Count - 1)];
+        return CurrentClient;
+    }
+
+    public bool ConfirmClientIsSatisfied(float p_callSatisfaction)
+    {
+        return p_callSatisfaction >= CurrentClient.SatisfactionThreshold;
     }
 }

@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
     private GameState m_gameState;
     private int m_gameStateID;
 
+    private Player m_player;
     private PlayerInput m_input;
     private CallManager m_callManager;
     private ClientManager m_clientManager;
@@ -23,12 +24,14 @@ public class GameManager : MonoBehaviour
     {
         m_input = new PlayerInput();
 
+
+        m_player = FindAnyObjectByType<Player>();
         m_callManager = FindAnyObjectByType<CallManager>();
         m_clientManager = FindAnyObjectByType<ClientManager>();
         m_sfxManager = FindAnyObjectByType<SFXManager>();
 
         foreach (var state in m_gameStates)
-            state.Initialize(this, m_input);
+            state.Initialize(this, m_player, m_input);
     }
 
     private void Start()

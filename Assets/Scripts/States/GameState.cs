@@ -4,13 +4,18 @@ public abstract class GameState : ScriptableObject
 {
     protected GameManager m_game;
 
-    protected PlayerInput m_player;
+    protected PlayerInput m_input;
+    protected Player m_player;
+
+    protected SFXManager m_sfxManager;
 
 
-    public virtual void Initialize(GameManager game, PlayerInput player)
+    public virtual void Initialize(GameManager game, Player player, PlayerInput input)
     {
         m_game = game;
         m_player = player;
+        m_input = input;
+        m_sfxManager = game.SFXManager;
     }
 
     public abstract void Enter();
