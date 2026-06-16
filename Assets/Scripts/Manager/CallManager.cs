@@ -44,6 +44,11 @@ public class CallManager : MonoBehaviour
         m_source.Play();
     }
 
+    public void StopCall()
+    {
+        m_source.Stop();
+    }
+
     public void OnSatisfied(float p_percent)
     {
         ClientSatisfaction += p_percent;

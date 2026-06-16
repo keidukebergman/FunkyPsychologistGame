@@ -7,6 +7,7 @@ public abstract class GameState : ScriptableObject
     protected PlayerInput m_input;
     protected Player m_player;
 
+    protected HUDManager m_hud;
     protected SFXManager m_sfxManager;
 
 
@@ -16,6 +17,7 @@ public abstract class GameState : ScriptableObject
         m_player = player;
         m_input = input;
         m_sfxManager = game.SFXManager;
+        m_hud = game.HUDManager;
     }
 
     public abstract void Enter();

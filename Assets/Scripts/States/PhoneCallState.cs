@@ -11,14 +11,22 @@ public class PhoneCallState : GameState
     CallManager m_callManager;
     ClientManager m_clientManager;
 
+    FatigueManager m_fatigueManager;
+
     private float m_placeDelayTime;
     private bool m_placingPhone;
+
+    private bool FellAsleep { get; set; }
 
     public override void Initialize(GameManager game, Player player, PlayerInput input)
     {
         base.Initialize(game, player, input);
         m_callManager = game.CallManager;
         m_clientManager = game.ClientManager;
+
+        m_fatigueManager = player.GetComponentInChildren<FatigueManager>();
+        m_fatigueManager.OnSleep += OnSleep;
+        FellAsleep = false;
     }
 
     public override void Enter()
@@ -49,16 +57,28 @@ public class PhoneCallState : GameState
 
     public override void Exit()
     {
-
+        m_callManager.StopCall();
     }
 
     private void DuringPhoneCall()
     {
+        if (FellAsleep)
+        {
+            m_callManager.PlaceSFX();
+            m_game.ChangeState(3);
+            return;
+        }
+
         if (m_input.MouseRightDown)
         {
             if (m_player.Nod())
                 m_callManager.OnSatisfied(_mhmmSatisfactionBoost);
         }
+    }
+
+    private void OnSleep()
+    {
+        FellAsleep = true;
     }
 
     private void OnCallOver()
@@ -73,7 +93,10 @@ public class PhoneCallState : GameState
     {
         if (m_placeDelayTime <= 0)
         {
-            m_game.ChangeState(0);
+            if (m_clientManager.NoMoreClients)
+                m_game.ChangeState(2);
+            else
+                m_game.ChangeState(0);
         }
         else
             m_placeDelayTime -= Time.deltaTime;

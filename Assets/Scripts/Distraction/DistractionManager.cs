@@ -84,7 +84,7 @@ public class DistractionManager : MonoBehaviour
         fatigueManager.RemoveFatigue(focus_power * (1 - distractionEntity.boredness));
         //Up that boredness, dude!
         distractionEntity.boredness = Mathf.MoveTowards(distractionEntity.boredness, 1, borednessIncreasePerActiveSecond * Time.deltaTime);
-        print(distractionEntity.boredness);
+        //print(distractionEntity.boredness);
 
         //Remove boredness from other items
         foreach (var key in distractionEntities.Keys)

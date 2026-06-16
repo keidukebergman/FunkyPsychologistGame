@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerNod : MonoBehaviour, Interactable
 {
     public float nodCooldown = .2f;
-    public float stimulationAmount = .2f;
+    public float stimulationAmount = 5f;
 
     private float nodTime;
 

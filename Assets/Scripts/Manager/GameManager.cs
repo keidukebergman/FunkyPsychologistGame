@@ -15,10 +15,12 @@ public class GameManager : MonoBehaviour
     private CallManager m_callManager;
     private ClientManager m_clientManager;
     private SFXManager m_sfxManager;
+    private HUDManager m_HUDManager;
 
     public CallManager CallManager => m_callManager;
     public ClientManager ClientManager => m_clientManager;
     public SFXManager SFXManager => m_sfxManager;
+    public HUDManager HUDManager => m_HUDManager;
 
     void Awake()
     {
@@ -29,6 +31,7 @@ public class GameManager : MonoBehaviour
         m_callManager = FindAnyObjectByType<CallManager>();
         m_clientManager = FindAnyObjectByType<ClientManager>();
         m_sfxManager = FindAnyObjectByType<SFXManager>();
+        m_HUDManager = FindAnyObjectByType<HUDManager>();
 
         foreach (var state in m_gameStates)
             state.Initialize(this, m_player, m_input);
