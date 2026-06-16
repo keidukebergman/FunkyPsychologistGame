@@ -48,6 +48,11 @@ public class DistractionManager : MonoBehaviour
         }
     }
 
+    public void Lose()
+    {
+        //DO SOMETHING
+    }
+
     public void OnInteractWithPersistentInteractable(Interactable interactable, float focus_power)
     {
         if (interactable == null) return;
