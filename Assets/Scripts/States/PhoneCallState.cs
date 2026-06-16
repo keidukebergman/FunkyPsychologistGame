@@ -6,6 +6,7 @@ public class PhoneCallState : GameState
     [SerializeField] private float _placeDelay = .5f;
     
     CallManager m_callManager;
+    ClientManager m_clientManager;
 
     private float m_placeDelayTime;
     private bool m_placingPhone;
@@ -14,11 +15,14 @@ public class PhoneCallState : GameState
     {
         base.Initialize(game, player);
         m_callManager = game.CallManager;
+        m_clientManager = game.ClientManager;
     }
 
     public override void Enter()
     {
-        m_callManager.PlayCall();
+        var client = m_clientManager.PullClient();
+
+        m_callManager.PlayCall(client);
 
         m_placingPhone = false;
         m_placeDelayTime = _placeDelay;

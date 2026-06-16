@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_ManFromBirmingham_Intro
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: 7a565df0beee4c044a401f82871c1dfb, type: 3}
+  Subtitles: 'I live in Smethwick Birmingham if you want to FUCKING brawl. COME down,
+    Smethwick, ask for Danny G, I''LL COME OUT MY HOUSE, AND I''LL BREAK YOUR FUCKING
+    LEGS! '
