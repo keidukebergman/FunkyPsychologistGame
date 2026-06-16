@@ -1325,7 +1325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   fatigue: 0
   fatigueGrowthPerSecond: 0.2
-  fatigueRestorationPerSecond: 0.4
+  fatigueRestorationPerSecond: 0.9
   sleepTime: 3
 --- !u!4 &1832543855
 Transform:
