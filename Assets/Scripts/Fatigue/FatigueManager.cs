@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class FatigueManager : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class FatigueManager : MonoBehaviour
     [SerializeField] private float fatigueRestorationPerSecond = 0.04f; //Fatigue should be reset between clients
     bool isDrainingFatigue = true; //Should probably only drain fatigue when talking to clients
     bool isRestoringFatigue = false;
-    //bool canAffectFatigue = false;
+
+    [SerializeField] private float sleepTime = 3;
 
     private void Awake()
     {
@@ -34,7 +36,7 @@ public class FatigueManager : MonoBehaviour
         }
         if (fatigue > 0.0f && isRestoringFatigue)
         {
-            fatigue += fatigueRestorationPerSecond * Time.deltaTime;
+            fatigue -= fatigueRestorationPerSecond * Time.deltaTime;
             if(fatigue <= 0.0f)
             {
                 fatigue = 0.0f;
@@ -47,6 +49,19 @@ public class FatigueManager : MonoBehaviour
         DistractionManager.instance.Lose();
         isDrainingFatigue = false;
         print("You lost! Sleepy time!");
+        StartCoroutine(SleepyTime());
+    }
+
+    private void Awaken()
+    {
+        isDrainingFatigue = false;
+        isRestoringFatigue = true;
+    }
+
+    IEnumerator SleepyTime()
+    {
+        yield return new WaitForSeconds(sleepTime);
+        Awaken();
     }
 
     public void EndCall()
