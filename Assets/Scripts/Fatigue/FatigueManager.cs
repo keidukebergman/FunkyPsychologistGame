@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using NUnit.Framework.Constraints;
 
 public class FatigueManager : MonoBehaviour
 {
@@ -9,6 +10,13 @@ public class FatigueManager : MonoBehaviour
     [SerializeField] private float fatigueRestorationPerSecond = 0.04f; //Fatigue should be reset between clients
     bool isDrainingFatigue = true; //Should probably only drain fatigue when talking to clients
     bool isRestoringFatigue = false;
+    [SerializeField] private State state;
+    enum State
+    {
+        Idle,
+        InCall,
+        Lost
+    }
 
     [SerializeField] private float sleepTime = 3;
 
@@ -22,25 +30,45 @@ public class FatigueManager : MonoBehaviour
         
     }
 
+  
     private void Update()
     {
-        if (fatigue < 1.0f && isDrainingFatigue)
+        switch (state)
         {
-            fatigue += fatigueGrowthPerSecond * Time.deltaTime;
-            //Oooh buddy, time to suffer
-            if (fatigue >= 1.0f)
-            {
-                fatigue = 1.0f;
-                FallAsleep();
-            }
-        }
-        if (fatigue > 0.0f && isRestoringFatigue)
-        {
-            fatigue -= fatigueRestorationPerSecond * Time.deltaTime;
-            if(fatigue <= 0.0f)
-            {
-                fatigue = 0.0f;
-            }
+            case State.Idle:
+                if (fatigue > 0.0f)
+                {
+                    fatigue -= fatigueRestorationPerSecond * Time.deltaTime;
+                    if (fatigue <= 0.0f)
+                    {
+                        fatigue = 0.0f;
+                    }
+                }
+                break;
+
+            case State.InCall:
+                if (fatigue < 1.0f)
+                {
+                    fatigue += fatigueGrowthPerSecond * Time.deltaTime;
+                    //Oooh buddy, time to suffer
+                    if (fatigue >= 1.0f)
+                    {
+                        fatigue = 1.0f;
+                        FallAsleep();
+                    }
+                }
+                break;
+
+            case State.Lost:
+                if (fatigue > 0.0f)
+                {
+                    fatigue -= fatigueRestorationPerSecond * Time.deltaTime;
+                    if (fatigue <= 0.0f)
+                    {
+                        fatigue = 0.0f;
+                    }
+                }
+                break;
         }
     }
 
@@ -54,8 +82,7 @@ public class FatigueManager : MonoBehaviour
 
     private void Awaken()
     {
-        isDrainingFatigue = false;
-        isRestoringFatigue = true;
+        state = State.Lost;
     }
 
     IEnumerator SleepyTime()
@@ -64,9 +91,13 @@ public class FatigueManager : MonoBehaviour
         Awaken();
     }
 
+    public void EnterCall()
+    {
+        state = State.InCall;
+    }
     public void EndCall()
     {
-        isDrainingFatigue = false;
+        state = State.Idle;
     }
 
 
