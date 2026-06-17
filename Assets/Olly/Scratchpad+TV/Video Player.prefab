@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5975059945959913210
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3660178166776908793}
+  - component: {fileID: 8858018950445925836}
+  - component: {fileID: 6170772247178824420}
+  - component: {fileID: 3170607931775717172}
+  m_Layer: 0
+  m_Name: Video Player
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &3660178166776908793
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975059945959913210}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 1066.5, y: 457.87503}
+  m_SizeDelta: {x: 265.5575, y: 195.5647}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8858018950445925836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975059945959913210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 141c94b6c24e6944b902b576ef538bcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SingleGifPlayer
+  gifPath: /black-screen.gif
+  renderMode: 0
+  targetImage: {fileID: 0}
+  targetRenderer: {fileID: 0}
+--- !u!114 &6170772247178824420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975059945959913210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d659e987612fa043aa57c8bcdee6798, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgramSwitch
+  programScript: {fileID: 8858018950445925836}
+  clientsScript: {fileID: 3170607931775717172}
+  myPrefabPlayer: {fileID: 5975059945959913210}
+  nameValuesArray:
+  - /KaijuGoodEnd.gif
+  - /KaijuBadEnd.gif
+  nameValuesEntertainment:
+  - /ent1.gif
+  - /ent2.gif
+  - /ent3.gif
+  - /ent4.gif
+  nameValuesTelemarket:
+  - /newtons-cradle1.gif
+  - /newtons-cradle.gif
+  - /fidgetSpinner.gif
+  maxWaitTime: 5
+  timerIsRunning: 0
+  entertainment: 0
+  callOngoing: 0
+  afterCallSatisf: 1
+  telemChoiceTime: 0
+  telemChoiceTimer: 1
+  distractionAppeared: 0
+  tvTurnedOn: 1
+  clientOrder:
+  - Kaiju
+  - Boss
+  clientNameEnd: null
+  currentDist: 0
+  currentClient: 0
+  distrToBuy: 0
+--- !u!114 &3170607931775717172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975059945959913210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd36b14a1457fa14ca4b07675e28d51e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProgramSwitchScript
+  callOngoing: 0
+  afterCallSatisf: 0
+  satisfaction: 1
