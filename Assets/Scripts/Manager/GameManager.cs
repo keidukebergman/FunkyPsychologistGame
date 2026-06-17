@@ -23,7 +23,8 @@ public class GameManager : MonoBehaviour
     public ChoiceManager ChoiceManager => m_choiceManager;
     public SFXManager SFXManager => m_sfxManager;
     public HUDManager HUDManager => m_HUDManager;
-    
+
+    public ProgramSwitchScript SwitchScript { get; internal set; }
 
     void Awake()
     {

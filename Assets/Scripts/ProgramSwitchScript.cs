@@ -5,17 +5,26 @@ public class ProgramSwitchScript : MonoBehaviour
     public bool callOngoing = false;
     public bool afterCallSatisf = false;
     public bool satisfaction = false;
+    public bool commercial = false;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void SwitchToNews()
     {
-        
+        callOngoing = false;
+        afterCallSatisf = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SwitchToCommercial()
     {
-        
+        callOngoing = false;
+        satisfaction = false;
+        commercial = true;
+    }
+
+    public void SwitchToEntertainment()
+    {
+        callOngoing = false;
+        afterCallSatisf = false;
+        satisfaction = false;
+        commercial = false;
     }
 }
