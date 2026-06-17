@@ -259,6 +259,7 @@ GameObject:
   - component: {fileID: 665301459}
   - component: {fileID: 665301462}
   - component: {fileID: 665301463}
+  - component: {fileID: 665301464}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -401,6 +402,18 @@ MonoBehaviour:
   maxLookUpAngle: 80
   maxLookDownAngle: 80
   lockCursor: 1
+--- !u!114 &665301464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665301458}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4418fc43acf5f6c44bdead6822c5d1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraInteractionRaycast
 --- !u!1 &1769785133
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +505,7 @@ GameObject:
   - component: {fileID: 1847291367}
   - component: {fileID: 1847291366}
   - component: {fileID: 1847291365}
+  - component: {fileID: 1847291369}
   m_Layer: 0
   m_Name: InteractableCube
   m_TagString: Untagged
@@ -592,6 +606,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 45, y: 45, z: 0}
+--- !u!114 &1847291369
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1847291364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 144f9d6170d353546b6841303e375f27, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ClickableDebugInteractable
 --- !u!1001 &1733580208663639947
 PrefabInstance:
   m_ObjectHideFlags: 0
