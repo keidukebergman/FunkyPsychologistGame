@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using NUnit.Framework.Constraints;
+using System;
 
 public class FatigueManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class FatigueManager : MonoBehaviour
     }
 
     [SerializeField] private float sleepTime = 3;
+
+    public Action OnSleep;
 
     private void Awake()
     {
@@ -77,6 +80,7 @@ public class FatigueManager : MonoBehaviour
         DistractionManager.instance.Lose();
         isDrainingFatigue = false;
         print("You lost! Sleepy time!");
+        OnSleep?.Invoke();
         StartCoroutine(SleepyTime());
     }
 

@@ -22,8 +22,8 @@ public class SFXManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
-    static public void PlayEncounterSFX() => Instance.PlayEncounterSFX_Internal();
-    private void PlayEncounterSFX_Internal() => PlaySFX_Internal(m_sfxCollection[0].Clip, m_sfxCollection[0].Volume);
+    static public void PlayMhmmSFX() => Instance.PlayMhmmSFX_Internal();
+    private void PlayMhmmSFX_Internal() => PlaySFX_Internal(m_sfxCollection[0].Clip, m_sfxCollection[0].Volume);
 
     static public void PlaySFX(AudioClip p_clip, float p_volume = 1, bool p_randomizePitch = false)
     {

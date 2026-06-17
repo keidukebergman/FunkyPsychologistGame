@@ -2,27 +2,26 @@ using UnityEngine;
 
 public class CallManager : MonoBehaviour
 {
-
+    [SerializeField] private float startingSatisfaction = .5f;
+    [Space]
     [SerializeField] private AudioSource m_source;
     [SerializeField] private AudioSource m_phonesource;
     [Space]
-    [SerializeField] private AudioClip[] m_calls;
     [SerializeField] private AudioClip[] m_phoneSFX;
 
     public bool CallOver { get; set; }
 
-    private void Awake()
+    public Client CurrentClient { get; private set; }
+
+    private float _clientSatisfaction;
+    public float ClientSatisfaction
     {
-
-    }
-
-    public void PlayCall(Client p_client)
-    {
-        CallOver = false;
-
-        m_source.clip = p_client.Speeches[0].Clip; //m_calls[Random.Range(0, m_calls.Length)];
-
-        m_source.Play();
+        get => _clientSatisfaction;
+        private set
+        {
+            _clientSatisfaction = value;
+            Debug.Log("Client Satisfaction: " + _clientSatisfaction);
+        }
     }
 
     public void FixedUpdate()
@@ -31,6 +30,33 @@ public class CallManager : MonoBehaviour
         {
             CallOver = !m_source.isPlaying;
         }
+    }
+
+    public void PlayCall(Client p_client)
+    {
+        CallOver = false;
+        CurrentClient = p_client;
+
+        ClientSatisfaction = startingSatisfaction;
+
+        m_source.clip = CurrentClient.Speeches[0].Clip;
+
+        m_source.Play();
+    }
+
+    public void StopCall()
+    {
+        m_source.Stop();
+    }
+
+    public void OnSatisfied(float p_percent)
+    {
+        ClientSatisfaction += p_percent;
+    }
+
+    public void OnDispleased(float p_percent)
+    {
+        ClientSatisfaction -= p_percent;
     }
 
     public void PlayRinging()

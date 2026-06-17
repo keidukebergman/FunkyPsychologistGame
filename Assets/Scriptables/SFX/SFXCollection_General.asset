@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: SFXCollection_General
   m_EditorClassIdentifier: Assembly-CSharp::SFXCollection
   _collection:
+  - Clip: {fileID: 8300000, guid: 2d79b2bdd61b00c40a87ec346d631f28, type: 3}
+    Volume: 1
+    RandomizePitch: 0
   - Clip: {fileID: 8300000, guid: ebf48ec3b017f82488587ab367547578, type: 3}
     Volume: 1
     RandomizePitch: 0
   - Clip: {fileID: 8300000, guid: eff66e72c5aef1045a9d1f5d4b01e554, type: 3}
-    Volume: 1
-    RandomizePitch: 0
-  - Clip: {fileID: 8300000, guid: 2d79b2bdd61b00c40a87ec346d631f28, type: 3}
     Volume: 1
     RandomizePitch: 0
