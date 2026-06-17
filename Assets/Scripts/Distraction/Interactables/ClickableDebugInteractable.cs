@@ -1,16 +1,22 @@
 using UnityEngine;
 
-public class ClickableDebugInteractable : MonoBehaviour
+public class ClickableDebugInteractable : MonoBehaviour, Interactable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private float cooldown = 0.4f;
+    private float timer = 0;
+
+    public void Update()
     {
-        
+        if(timer > 0)
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OnInteract()
     {
-        
+        if (timer > 0) return;
+        DistractionManager.instance.OnInteractWithSingleUseInteractable(this, 0.3f);
+        timer = cooldown;
     }
 }

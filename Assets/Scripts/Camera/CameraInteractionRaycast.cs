@@ -16,10 +16,12 @@ public class CameraInteractionRaycast : MonoBehaviour
         {
             holding = true;
         }
+        
         if (Input.GetButtonUp("Interact"))
         {
             holding = false;
         }
+
         if (holding)
         {
             RaycastHit hit;

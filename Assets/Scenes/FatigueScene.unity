@@ -670,6 +670,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6044984607042230457, guid: eccece41e8e4d1e449cf7dd387f9c28e, type: 3}
+      propertyPath: borednessIncreasePerSingleInteraction
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6441725669756964990, guid: eccece41e8e4d1e449cf7dd387f9c28e, type: 3}
+      propertyPath: fatigueGrowthPerSecond
+      value: 0.03
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
