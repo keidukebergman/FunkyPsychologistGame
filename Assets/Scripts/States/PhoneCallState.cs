@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Call State", menuName = "Scriptables/Game States/Call", order = 0)]
@@ -10,6 +11,7 @@ public class PhoneCallState : GameState
 
     CallManager m_callManager;
     ClientManager m_clientManager;
+    ChoiceManager m_choiceManager;
 
     FatigueManager m_fatigueManager;
 
@@ -23,10 +25,13 @@ public class PhoneCallState : GameState
         base.Initialize(game, player, input);
         m_callManager = game.CallManager;
         m_clientManager = game.ClientManager;
+        m_choiceManager = game.ChoiceManager;
 
         m_fatigueManager = player.GetComponentInChildren<FatigueManager>();
         m_fatigueManager.OnSleep += OnSleep;
         FellAsleep = false;
+
+        m_callManager.OnSpeechFinished += OnSpeechFinished;
     }
 
     public override void Enter()
@@ -34,6 +39,7 @@ public class PhoneCallState : GameState
         var client = m_clientManager.PullClient();
 
         m_callManager.PlayCall(client);
+        m_choiceManager.Prepare(client);
 
         m_placingPhone = false;
         m_placeDelayTime = _placeDelay;
@@ -65,15 +71,46 @@ public class PhoneCallState : GameState
         if (FellAsleep)
         {
             m_callManager.PlaceSFX();
+            m_hud.OnChoiceMade();
             m_game.ChangeState(3);
             return;
         }
 
-        if (m_input.MouseRightDown)
+        if (m_callManager.InDecision)
         {
-            if (m_player.Nod())
-                m_callManager.OnSatisfied(_mhmmSatisfactionBoost);
+            var path = m_choiceManager.ListenToChoice(m_input);
+
+            if (path.choice >= 0)
+            {
+                m_hud.OnChoiceMade();
+                if (path.approved)
+                    m_callManager.OnSatisfied(.5f);
+                m_callManager.ProceedCall();
+            }
         }
+        else
+        {
+            m_callManager.Tick();
+
+            if (m_input.MouseRightDown)
+            {
+                if (m_player.Nod())
+                    m_callManager.OnSatisfied(_mhmmSatisfactionBoost);
+            }
+        }
+    }
+    private void OnSpeechFinished(int progress)
+    {
+        string[] choices = null;
+        if (progress == 0)
+        {
+            choices = m_choiceManager.PresentFirstChoice();
+        }
+        else if (progress == 1)
+        {
+            choices = m_choiceManager.PresentSecondChoice();
+        }
+        m_hud.OnSpeechFinished(progress, choices);
     }
 
     private void OnSleep()

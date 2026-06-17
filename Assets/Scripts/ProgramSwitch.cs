@@ -74,17 +74,14 @@ public class ProgramSwitch : MonoBehaviour
             //int chooseProgram = UnityEngine.Random.Range(0,1);
             //if (chooseProgram == 0)
             //{
+            if (clientsScript.commercial == true)
+            {
+                Telemarket(); 
+            }
             if (entertainment == false)
             {
                 RandomEntertainment();
             }
-            
-
-            //}
-            //else
-            //{
-            // Telemarket();
-            //}
             // RandomEntertainment();
 
         }

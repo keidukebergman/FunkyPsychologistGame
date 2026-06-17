@@ -23,6 +23,16 @@ public class PlayerInput
     public bool ScrollWheelUp { get; set; }
 
     public bool SpacebarDown { get; set; }
+    public bool Key0Down { get; set; }
+    public bool Key1Down { get; set; }
+    public bool Key2Down { get; set; }
+    public bool Key3Down { get; set; }
+    public bool Key4Down { get; set; }
+    public bool Key5Down { get; set; }
+    public bool Key6Down { get; set; }
+    public bool Key7Down { get; set; }
+    public bool Key8Down { get; set; }
+    public bool Key9Down { get; set; }
 
     public float MouseDelta { get; set; }
 
@@ -56,6 +66,17 @@ public class PlayerInput
         ScrollWheelUp = Mouse.current.middleButton.wasReleasedThisFrame;
 
         SpacebarDown = Keyboard.current.spaceKey.wasPressedThisFrame;
+
+        Key0Down = Keyboard.current.numpad0Key.wasPressedThisFrame;
+        Key1Down = Keyboard.current.numpad1Key.wasPressedThisFrame;
+        Key2Down = Keyboard.current.numpad2Key.wasPressedThisFrame;
+        Key3Down = Keyboard.current.numpad3Key.wasPressedThisFrame;
+        Key4Down = Keyboard.current.numpad4Key.wasPressedThisFrame;
+        Key5Down = Keyboard.current.numpad5Key.wasPressedThisFrame;
+        Key6Down = Keyboard.current.numpad6Key.wasPressedThisFrame;
+        Key7Down = Keyboard.current.numpad7Key.wasPressedThisFrame;
+        Key8Down = Keyboard.current.numpad8Key.wasPressedThisFrame;
+        Key9Down = Keyboard.current.numpad9Key.wasPressedThisFrame;
     }
 
     private void ResetInput()
