@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     private SFXManager m_sfxManager;
     private HUDManager m_HUDManager;
 
+    private ClickableTelephone m_telephone;
     private ProgramSwitchScript m_switchScript;
 
     public CallManager CallManager => m_callManager;
@@ -28,6 +29,8 @@ public class GameManager : MonoBehaviour
     public HUDManager HUDManager => m_HUDManager;
 
     public ProgramSwitchScript TVSwitch => m_switchScript;
+    public ClickableTelephone Telephone => m_telephone;
+
 
     void Awake()
     {
@@ -42,6 +45,7 @@ public class GameManager : MonoBehaviour
         m_HUDManager = FindAnyObjectByType<HUDManager>();
 
         m_switchScript = FindAnyObjectByType<ProgramSwitchScript>();
+        m_telephone = FindAnyObjectByType<ClickableTelephone>();
 
         foreach (var state in m_gameStates)
             state.Initialize(this, m_player, m_input);
