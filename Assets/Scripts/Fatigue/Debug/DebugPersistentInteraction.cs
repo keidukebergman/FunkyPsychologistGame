@@ -3,9 +3,11 @@ using UnityEngine.EventSystems;
 
 public class DebugPersistentInteraction : MonoBehaviour, Interactable, IPointerDownHandler, IPointerUpHandler
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private bool pressed = false;
     [SerializeField] private float stimulationAmount = 0.5f;
+    public bool isOneShot = false;
+
+    bool Interactable.isOneShot { get => isOneShot; set => isOneShot = value; }
     public void OnPointerDown(PointerEventData eventData)
     {
         pressed = true;

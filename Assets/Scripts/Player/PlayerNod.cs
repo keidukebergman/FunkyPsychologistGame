@@ -7,6 +7,9 @@ public class PlayerNod : MonoBehaviour, Interactable
     public float stimulationAmount = 5f;
 
     private float nodTime;
+    public bool isOneShot = true;
+
+    bool Interactable.isOneShot { get => isOneShot; set => isOneShot = value; }
 
     private void Awake()
     {

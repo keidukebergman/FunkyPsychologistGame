@@ -3,18 +3,12 @@ using UnityEngine;
 public class CameraInteractionRaycast : MonoBehaviour
 {
     bool holding = false;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetButtonDown("Interact"))
         {
             holding = true;
+            Click();
         }
         
         if (Input.GetButtonUp("Interact"))
@@ -29,7 +23,7 @@ public class CameraInteractionRaycast : MonoBehaviour
             if(Physics.Raycast(transform.position, transform.forward, out hit))
             {
                 Interactable interactable = hit.transform.gameObject.GetComponent<Interactable>();
-                if (interactable != null)
+                if (interactable != null && !interactable.isOneShot)
                 {
                     interactable.OnInteract(hit);
                 }
@@ -47,6 +41,19 @@ public class CameraInteractionRaycast : MonoBehaviour
 
     private void Click()
     {
-
+        Debug.Log("Raycast firing");
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, transform.forward, out hit))
+        {
+            Interactable interactable = hit.transform.gameObject.GetComponent<Interactable>();
+            if (interactable != null && interactable.isOneShot)
+            {
+                interactable.OnInteract(hit);
+            }
+            else
+            {
+                Debug.Log("Raycast hit " + hit.collider.name);
+            }
+        }
     }
 }

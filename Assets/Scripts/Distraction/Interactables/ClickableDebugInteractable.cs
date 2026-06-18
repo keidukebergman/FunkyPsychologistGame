@@ -6,6 +6,9 @@ public class ClickableDebugInteractable : MonoBehaviour, Interactable
     private float timer = 0;
     [SerializeField] private Material[] materials;
     int material_index = 0;
+    public bool isOneShot = true;
+
+    bool Interactable.isOneShot { get => isOneShot; set => isOneShot = value; }
 
     public void Update()
     {
