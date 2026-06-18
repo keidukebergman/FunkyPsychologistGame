@@ -1,7 +1,6 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.Windows;
 
 public class GameManager : MonoBehaviour
 {
@@ -60,6 +59,11 @@ public class GameManager : MonoBehaviour
     {
         m_gameState.Tick();
         m_input.Tick();
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            QuitGame();
+        }
     }
 
     public void OnStartGame()
@@ -84,5 +88,14 @@ public class GameManager : MonoBehaviour
 
 
         Debug.Log("Entering " + m_gameState.name);
+    }
+
+    private void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit ();
+#endif
     }
 }
