@@ -30,7 +30,7 @@ public class CameraInteractionRaycast : MonoBehaviour
                 Interactable interactable = hit.transform.gameObject.GetComponent<Interactable>();
                 if (interactable != null)
                 {
-                    interactable.OnInteract();
+                    interactable.OnInteract(hit);
                 }
             }
         }

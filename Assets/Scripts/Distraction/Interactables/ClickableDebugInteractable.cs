@@ -13,10 +13,11 @@ public class ClickableDebugInteractable : MonoBehaviour, Interactable
         }
     }
 
-    public void OnInteract()
+    public void OnInteract(RaycastHit raycastHit)
     {
         if (timer > 0) return;
         DistractionManager.instance.OnInteractWithSingleUseInteractable(this, 0.3f);
         timer = cooldown;
+        GetComponent<Rigidbody>().AddForceAtPosition(-raycastHit.normal * 10, raycastHit.point, ForceMode.Impulse);
     }
 }

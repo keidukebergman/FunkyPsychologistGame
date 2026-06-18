@@ -21,11 +21,11 @@ public class DebugPersistentInteraction : MonoBehaviour, Interactable, IPointerD
     {
         if (pressed)
         {
-            OnInteract();
+            OnInteract(new RaycastHit());
         }
     }
 
-    public void OnInteract()
+    public void OnInteract(RaycastHit raycastHit)
     {
         DistractionManager.instance.OnInteractWithPersistentInteractable(this, stimulationAmount * Time.deltaTime);
     }
