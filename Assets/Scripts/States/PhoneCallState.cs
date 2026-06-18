@@ -90,8 +90,6 @@ public class PhoneCallState : GameState
         }
         else
         {
-            m_callManager.Tick();
-
             if (m_input.MouseRightDown)
             {
                 if (m_player.Nod())
