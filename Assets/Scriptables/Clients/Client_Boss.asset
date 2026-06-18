@@ -12,7 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767539b6e0ae9974d8dcef969dbf9df5, type: 3}
   m_Name: Client_Boss
   m_EditorClassIdentifier: Assembly-CSharp::Client
-  _speeches:
-  - {fileID: 0}
+  _clientName: Boss
   _satisfactionThreshold: 0.8
-  _likesPositiveResponse: 0
+  _speeches:
+  - {fileID: 11400000, guid: 22881a39ec208d54d9039b9d3e8247dd, type: 2}
+  _availableResponses:
+  - Response: {fileID: 0}
+    LikesIt: 0
+  _likesFinalPositiveResponse: 1

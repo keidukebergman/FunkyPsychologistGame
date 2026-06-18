@@ -270,6 +270,7 @@ GameObject:
   - component: {fileID: 756281618998547101}
   - component: {fileID: 6219882606873152336}
   - component: {fileID: 3719242405128261527}
+  - component: {fileID: 7178395582087303465}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -324,7 +325,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CallManager
   startingSatisfaction: 0.5
-  m_source: {fileID: 7458102213277983108}
+  m_clientSource: {fileID: 7458102213277983108}
   m_phonesource: {fileID: 1798899811920232716}
   m_phoneSFX:
   - {fileID: 8300000, guid: 6d597f815c3748d458b5faabfb342a07, type: 3}
@@ -347,3 +348,22 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d122d1fe314946e4282d15a9398e975b, type: 2}
   - {fileID: 11400000, guid: d122d1fe314946e4282d15a9398e975b, type: 2}
   - {fileID: 11400000, guid: d122d1fe314946e4282d15a9398e975b, type: 2}
+--- !u!114 &7178395582087303465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9202553426045253549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7201b9b9ae9b78740bdaa852525c0e85, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChoiceManager
+  _genericResponses: []
+  _positiveResponses:
+  - {fileID: 11400000, guid: fb2de404a026f3e48b59ef9ede18d771, type: 2}
+  - {fileID: 11400000, guid: da86d2ddc55009e479a0e151df55c26a, type: 2}
+  _negativeResponses:
+  - {fileID: 11400000, guid: fe6f7cb205e1bf54a97cdb33300b88ea, type: 2}
+  - {fileID: 11400000, guid: 61369ba6d9eb0e8489b75f0aa66c2666, type: 2}
