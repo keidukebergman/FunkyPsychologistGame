@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2402775322346485657}
   - component: {fileID: 6052025232715073830}
   - component: {fileID: 3778062143535698731}
+  - component: {fileID: 1533833619185217464}
+  - component: {fileID: 1022206773001798136}
   m_Layer: 0
   m_Name: Camera
   m_TagString: Untagged
@@ -137,6 +139,35 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5353647494130687817}
   m_Enabled: 1
+--- !u!114 &1533833619185217464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353647494130687817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4418fc43acf5f6c44bdead6822c5d1e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraInteractionRaycast
+--- !u!114 &1022206773001798136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5353647494130687817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 425ea3d4a89a266499a0f802c03e5da1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  sensitivityX: 200
+  sensitivityY: 200
+  maxLookUpAngle: 80
+  maxLookDownAngle: 80
+  lockCursor: 1
 --- !u!1 &5924729149202485665
 GameObject:
   m_ObjectHideFlags: 0
