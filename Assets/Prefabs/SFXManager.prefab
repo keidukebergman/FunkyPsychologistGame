@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76d061c96038f514686157c7ac6f8010, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SFXManager
-  m_sfxCollection: {fileID: 0}
+  m_sfxCollection: {fileID: 11400000, guid: dfeffe9d7eeb4b9479aa8821fa75f77b, type: 2}
   m_sfxMixerGroup: {fileID: 0}
 --- !u!82 &5432318106992369989
 AudioSource:

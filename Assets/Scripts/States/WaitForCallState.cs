@@ -28,7 +28,7 @@ public class WaitForCallState : GameState
 
             if (_waitTime <= 0)
             {
-                if (m_player.MouseLeftDown)
+                if (m_input.MouseLeftDown)
                 {
                     m_game.CallManager.PickUpSFX();
                     _pickedUpPhone = true;
