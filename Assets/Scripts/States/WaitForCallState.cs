@@ -21,12 +21,14 @@ public class WaitForCallState : GameState
     public override void Tick()
     {
 
-        if (!_pickedUpPhone)
+        if (_pickedUpPhone)
+            PickupDelay();
+        else
         {
 
             if (_waitTime <= 0)
             {
-                if (m_player.MouseLeftDown)
+                if (m_input.MouseLeftDown)
                 {
                     m_game.CallManager.PickUpSFX();
                     _pickedUpPhone = true;
@@ -41,17 +43,18 @@ public class WaitForCallState : GameState
                 }
             }
         }
-        else
-        {
-            if (_pickupDelayTime <= 0)
-                m_game.ChangeState(1);
-            else
-                _pickupDelayTime -= Time.deltaTime;
-        }
     }
 
     public override void Exit()
     {
 
+    }
+
+    private void PickupDelay()
+    {
+        if (_pickupDelayTime <= 0)
+            m_game.ChangeState(1);
+        else
+            _pickupDelayTime -= Time.deltaTime;
     }
 }

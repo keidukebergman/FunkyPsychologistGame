@@ -6,11 +6,14 @@ public class VignetteHandler : MonoBehaviour
     [SerializeField] private Material vignetteMaterial;
     [SerializeField] private float max_curvature, min_curvature;
     [SerializeField] private float max_separation, min_separation;
+    public static VignetteHandler instance;
 
     private void Start()
     {
+        instance = this;
         vignetteMaterial.SetFloat("_Active", 1);
     }
+
     void Update()
     {
         vignetteMaterial.SetFloat("_Curvature", Mathf.Lerp(min_curvature, max_curvature, (fatigueManager.GetFatigue())));

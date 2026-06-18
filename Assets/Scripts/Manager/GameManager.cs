@@ -10,19 +10,36 @@ public class GameManager : MonoBehaviour
     private GameState m_gameState;
     private int m_gameStateID;
 
+    private Player m_player;
     private PlayerInput m_input;
     private CallManager m_callManager;
+    private ClientManager m_clientManager;
+    private ChoiceManager m_choiceManager;
+    private SFXManager m_sfxManager;
+    private HUDManager m_HUDManager;
 
     public CallManager CallManager => m_callManager;
+    public ClientManager ClientManager => m_clientManager;
+    public ChoiceManager ChoiceManager => m_choiceManager;
+    public SFXManager SFXManager => m_sfxManager;
+    public HUDManager HUDManager => m_HUDManager;
+
+    public ProgramSwitchScript SwitchScript { get; internal set; }
 
     void Awake()
     {
         m_input = new PlayerInput();
 
+
+        m_player = FindAnyObjectByType<Player>();
         m_callManager = FindAnyObjectByType<CallManager>();
+        m_clientManager = FindAnyObjectByType<ClientManager>();
+        m_choiceManager = FindAnyObjectByType<ChoiceManager>();
+        m_sfxManager = FindAnyObjectByType<SFXManager>();
+        m_HUDManager = FindAnyObjectByType<HUDManager>();
 
         foreach (var state in m_gameStates)
-            state.Initialize(this, m_input);
+            state.Initialize(this, m_player, m_input);
     }
 
     private void Start()
