@@ -12,6 +12,8 @@ public class FatigueManager : MonoBehaviour
     bool isDrainingFatigue = true; //Should probably only drain fatigue when talking to clients
     bool isRestoringFatigue = false;
     [SerializeField] private State state;
+    private float displayFatigue = 0f;
+    [SerializeField] private float displayFatigueMovement = 1;
     enum State
     {
         Idle,
@@ -73,6 +75,7 @@ public class FatigueManager : MonoBehaviour
                 }
                 break;
         }
+        displayFatigue = Mathf.MoveTowards(displayFatigue, fatigue, Time.deltaTime * displayFatigueMovement);
     }
 
     private void FallAsleep()
@@ -144,6 +147,11 @@ public class FatigueManager : MonoBehaviour
     public float GetFatigue()
     {
         return this.fatigue;
+    }
+
+    public float GetDisplayFatigue()
+    {
+        return this.displayFatigue;
     }
 }
 

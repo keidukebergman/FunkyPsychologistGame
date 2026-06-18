@@ -24,6 +24,7 @@ public class CameraInteractionRaycast : MonoBehaviour
 
         if (holding)
         {
+            Debug.Log("Raycast firing");
             RaycastHit hit;
             if(Physics.Raycast(transform.position, transform.forward, out hit))
             {
@@ -32,6 +33,14 @@ public class CameraInteractionRaycast : MonoBehaviour
                 {
                     interactable.OnInteract(hit);
                 }
+                else
+                {
+                    Debug.Log("Raycast hit " + hit.collider.name);
+                }
+            }
+            else
+            {
+                Debug.Log("Raycast did not hit anything. This should be impossible. You should look into this.");
             }
         }
     }
