@@ -21,6 +21,7 @@ public class ProgramSwitch : MonoBehaviour
     public float maxWaitTime = 5.0f;
     public bool timerIsRunning = false;
     public bool entertainment = false;
+    public bool commercialOn = false;
     public bool callOngoing = false;
     public bool afterCallSatisf = false;
     public bool telemChoiceTime = false;
@@ -33,7 +34,7 @@ public class ProgramSwitch : MonoBehaviour
     public int currentClient = 0;
     public int distrToBuy = 0;
 
-
+    private bool playsCommercial;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -69,26 +70,20 @@ public class ProgramSwitch : MonoBehaviour
             clientsScript.afterCallSatisf = false;
             Satisfaction(clientNameEnd);
         }
-        else if (clientsScript.callOngoing == false & clientsScript.afterCallSatisf == false & tvTurnedOn == false)
+        else if (clientsScript.callOngoing == false & clientsScript.afterCallSatisf == false & tvTurnedOn == false & clientsScript.commercial == true)
         {
-            //int chooseProgram = UnityEngine.Random.Range(0,1);
-            //if (chooseProgram == 0)
-            //{
-            if (clientsScript.commercial == true)
-            {
-                Telemarket(); 
-            }
-            if (entertainment == false)
+            clientsScript.commercial = false;
+            Telemarket();
+            
+        }
+        else if (clientsScript.callOngoing == false & clientsScript.afterCallSatisf == false & tvTurnedOn == false & clientsScript.commercial == false & entertainment == false)
+        {
+            if (!playsCommercial)
             {
                 RandomEntertainment();
+                Debug.Log("Ooops, you are in the ent if!:" + entertainment);
             }
-            // RandomEntertainment();
-
         }
-       
-         // Same for other clients
-
-         
     }
 
 
@@ -136,23 +131,21 @@ public class ProgramSwitch : MonoBehaviour
     public void Telemarket()
     {
 
+        entertainment = true;
+
         programScript.gifPath = nameValuesTelemarket[currentDist];
         currentDist = currentDist + 1;
         telemChoiceTime = true;
+
+        playsCommercial = true;
+
         GameObject clonePlayer = Instantiate(myPrefabPlayer);
         GetComponent<SingleGifPlayer>().enabled = false;
         clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
         StartCoroutine(TelProgramTimer());
         Destroy(clonePlayer, 5.0f);
-
-        programScript.gifPath = nameValuesTelemarket[currentDist];
-        currentDist = currentDist + 1;
-        GameObject clonePlayer2 = Instantiate(myPrefabPlayer);
-        GetComponent<SingleGifPlayer>().enabled = false;
-        clonePlayer2.GetComponent<SingleGifPlayer>().enabled = true;
-        StartCoroutine(TelProgramTimer());
-        Destroy(clonePlayer2, 5.0f);
-
+        entertainment = false;
+        Debug.Log("Telemarket done, ent state:" + entertainment);
 
     }
 
@@ -178,7 +171,7 @@ public class ProgramSwitch : MonoBehaviour
     {
         float timeElapsed = 0f;
         // 3. Loop every frame until the button is pressed OR time runs out
-        while (!Input.GetKeyDown(KeyCode.Keypad1) || !Input.GetKeyDown(KeyCode.Alpha1) && timeElapsed < maxWaitTime)
+        while (timeElapsed < maxWaitTime || !Input.GetKeyDown(KeyCode.Keypad1) || !Input.GetKeyDown(KeyCode.Alpha1))
         {
             // Increase timer by the time passed since the last frame
             timeElapsed += Time.deltaTime;
@@ -187,7 +180,8 @@ public class ProgramSwitch : MonoBehaviour
                 DistractionAppears();
                 distractionAppeared = true;
             }
-
+            if (timeElapsed >= maxWaitTime)
+                break;
             // Pause the coroutine until the next frame
             yield return null;
         }
@@ -196,8 +190,7 @@ public class ProgramSwitch : MonoBehaviour
         telemChoiceTime = false;
         programScript.gifPath = "/black-screen.gif";
         distractionAppeared = false;
-
-
+        playsCommercial = false;
         yield break;
     }
     IEnumerator EntProgramTimer()

@@ -368,6 +368,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1324098726}
     m_Modifications:
     - target: {fileID: 3170607931775717172, guid: c051c9eb65279f44183522c4c17d74ab, type: 3}
+      propertyPath: commercial
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3170607931775717172, guid: c051c9eb65279f44183522c4c17d74ab, type: 3}
       propertyPath: satisfaction
       value: 0
       objectReference: {fileID: 0}
@@ -468,8 +472,20 @@ PrefabInstance:
       value: Video Player
       objectReference: {fileID: 0}
     - target: {fileID: 6170772247178824420, guid: c051c9eb65279f44183522c4c17d74ab, type: 3}
+      propertyPath: tvTurnedOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170772247178824420, guid: c051c9eb65279f44183522c4c17d74ab, type: 3}
+      propertyPath: entertainment
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170772247178824420, guid: c051c9eb65279f44183522c4c17d74ab, type: 3}
       propertyPath: afterCallSatisf
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6170772247178824420, guid: c051c9eb65279f44183522c4c17d74ab, type: 3}
+      propertyPath: nameValuesTelemarket.Array.size
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6170772247178824420, guid: c051c9eb65279f44183522c4c17d74ab, type: 3}
       propertyPath: nameValuesEntertainment.Array.size
@@ -598,17 +614,17 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1175033324}
-  m_LocalRotation: {x: 0.71112067, y: 0.12482137, z: -0.11961901, w: 0.6814825}
-  m_LocalPosition: {x: 0, y: 0, z: 0.37100017}
-  m_LocalScale: {x: 0.00026, y: 0.00013, z: 0.00086}
+  m_LocalRotation: {x: 0.51305264, y: 0.49394876, z: -0.5067329, w: 0.485812}
+  m_LocalPosition: {x: 0, y: 0, z: 0.028541304}
+  m_LocalScale: {x: 0.0033263345, y: 0.00074526935, z: 0.03505203}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1521681186}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1928812300}
   m_LocalEulerAnglesHint: {x: 92.43799, y: 0, z: -19.91101}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.4591879, y: 0.836}
+  m_AnchoredPosition: {x: -0.028939247, y: -0.45299417}
   m_SizeDelta: {x: 500, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1324098723
@@ -923,7 +939,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: f43f1cb12e911bf41ad2188888101620, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -1117,7 +1133,8 @@ Transform:
   m_LocalPosition: {x: 0.463, y: 0.847, z: 0.375}
   m_LocalScale: {x: 0.17467467, y: 0.024282783, z: 0.07817521}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1175033328}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -70.193, z: 0}
 --- !u!1 &2028066990
@@ -1312,6 +1329,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 756281618998547101, guid: e42d3e40d71d6654f93a75c030a847ba, type: 3}
+      propertyPath: m_startingGameState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1798899811920232716, guid: e42d3e40d71d6654f93a75c030a847ba, type: 3}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2278105750801451453, guid: e42d3e40d71d6654f93a75c030a847ba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1734,7 +1759,6 @@ SceneRoots:
   - {fileID: 7224784860808525372}
   - {fileID: 139474119707451131}
   - {fileID: 1324098726}
-  - {fileID: 1928812300}
   - {fileID: 8489948006873226628}
   - {fileID: 5369390752602816251}
-  - {fileID: 1175033328}
+  - {fileID: 1928812300}
