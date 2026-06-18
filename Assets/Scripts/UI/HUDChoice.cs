@@ -8,12 +8,15 @@ public class HUDChoice : MonoBehaviour
     [SerializeField] TextMeshProUGUI[] _textFields;
 
     private UIGroup _group;
+    private Animator _animator;
+    private readonly int SHOW_ID = Animator.StringToHash("Show");
 
     public UIGroup Group => _group;
 
     private void Awake()
     {
         _group = GetComponent<UIGroup>();
+        _animator = GetComponent<Animator>();
     }
 
     public void PresentChoices(string[] choices)
@@ -32,11 +35,14 @@ public class HUDChoice : MonoBehaviour
                 _textFields[i].transform.parent.gameObject.SetActive(true);
             }
         }
+
+        _animator.SetBool(SHOW_ID, true);
     }
 
     public void OnChoiceMade()
     {
         _group.Hide();
+        _animator.SetBool(SHOW_ID, false);
     }
 
 }

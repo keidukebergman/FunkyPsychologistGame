@@ -9,11 +9,7 @@ namespace DH.DrawingModule.InputReader
         {
             GameObject inputReaderObject = new GameObject("InputReader");
             
-#if UNITY_WEBGL || UNITY_EDITOR
             return inputReaderObject.AddComponent<MouseSceneInputReader>();
-#elif !UNITY_EDITOR && (UNITY_ANDROID || UNITY_IOS)
-	    throw new NotImplementedException();
-#endif
         }
     }
 }
