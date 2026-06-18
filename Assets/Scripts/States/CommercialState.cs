@@ -12,11 +12,13 @@ public class CommercialState : GameState
     private float _stateTime;
     private float _comercialDelayTime;
 
+    private bool _playsCommercial = false;
+
     public override void Initialize(GameManager game, Player player, PlayerInput input)
     {
         base.Initialize(game, player, input);
 
-        switchScript = game.SwitchScript;
+        switchScript = game.TVSwitch;
     }
 
     public override void Enter()
@@ -25,21 +27,29 @@ public class CommercialState : GameState
 
         _stateTime = Time.time + _stateDuration;
         _comercialDelayTime = Time.time + _commercialDelay;
+
+        _playsCommercial = false;
     }
 
     public override void Tick()
     {
 
-        if (Time.time >= _stateTime)
+        if (_playsCommercial)
         {
-            m_game.ChangeState(0);
-            return;
+            if (Time.time >= _stateTime)
+            {
+                m_game.ChangeState(0);
+                return;
+            }
         }
-        if (Time.time >= _comercialDelayTime)
+        else
         {
-            switchScript.SwitchToCommercial();
+            if (Time.time >= _comercialDelayTime)
+            {
+                switchScript.SwitchToCommercial();
+                _playsCommercial = true;
+            }
         }
-        
     }
 
     public override void Exit()

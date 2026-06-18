@@ -133,7 +133,7 @@ public class PhoneCallState : GameState
             if (m_clientManager.NoMoreClients)
                 m_game.ChangeState(2);
             else
-                m_game.ChangeState(0);
+                m_game.ChangeState(4);
         }
         else
             m_placeDelayTime -= Time.deltaTime;
