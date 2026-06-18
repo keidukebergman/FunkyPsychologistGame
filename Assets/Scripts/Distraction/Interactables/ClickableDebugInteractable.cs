@@ -4,6 +4,8 @@ public class ClickableDebugInteractable : MonoBehaviour, Interactable
 {
     [SerializeField] private float cooldown = 0.4f;
     private float timer = 0;
+    [SerializeField] private Material[] materials;
+    int material_index = 0;
 
     public void Update()
     {
@@ -18,6 +20,7 @@ public class ClickableDebugInteractable : MonoBehaviour, Interactable
         if (timer > 0) return;
         DistractionManager.instance.OnInteractWithSingleUseInteractable(this, 0.3f);
         timer = cooldown;
-        GetComponent<Rigidbody>().AddForceAtPosition(-raycastHit.normal * 10, raycastHit.point, ForceMode.Impulse);
+        material_index = (material_index + 1) % (materials.Length);
+        GetComponent<Renderer>().material = materials[material_index];
     }
 }

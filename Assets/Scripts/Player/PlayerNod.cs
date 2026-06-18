@@ -18,7 +18,7 @@ public class PlayerNod : MonoBehaviour, Interactable
         if (Time.time >= nodTime)
         {
 
-            OnInteract();
+            OnInteract(new RaycastHit());
             nodTime = Time.time + nodCooldown;
             return true;
         }
@@ -28,7 +28,7 @@ public class PlayerNod : MonoBehaviour, Interactable
         }
     }
 
-    public void OnInteract()
+    public void OnInteract(RaycastHit raycastHit)
     {
         SFXManager.PlayMhmmSFX();
         DistractionManager.instance.OnInteractWithPersistentInteractable(this, stimulationAmount * Time.deltaTime);
