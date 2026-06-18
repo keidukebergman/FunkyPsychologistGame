@@ -59,7 +59,7 @@ public class DrawViewController1 : MonoBehaviour, IBeginDragHandler, IDragHandle
 
         //Debug.Log("Mouse Screen Pos: " + Input.mousePosition);
         Debug.Log("Over UI: " + IsPointerOverUIObject());
-        KeyboardInput();
+        //KeyboardInput();
     }
 
     private bool IsPointerOverUIObject()

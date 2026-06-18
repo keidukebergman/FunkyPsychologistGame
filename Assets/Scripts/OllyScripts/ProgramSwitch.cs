@@ -1,11 +1,6 @@
-using System;
-using System.Linq;
-using Unity.VisualScripting;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
-using System.Collections;
-using UnityImage = UnityEngine.UI.Image;
-using DrawingImage = System.Drawing.Image;
 
 
 public class ProgramSwitch : MonoBehaviour
@@ -14,11 +9,16 @@ public class ProgramSwitch : MonoBehaviour
     [SerializeField] ProgramSwitchScript clientsScript;
     public GameObject myPrefabPlayer;
 
+    [SerializeField] private AudioSource audioSource;
+    public string gifName;
+
+
     public string[] nameValuesArray;
     public string[] nameValuesEntertainment;
     public string[] nameValuesTelemarket = { "fidgetSpinner", "newtonsCradle" };
 
     public float maxWaitTime = 5.0f;
+    public float switchWaitTime = 2.0f;
     public bool timerIsRunning = false;
     public bool entertainment = false;
     public bool callOngoing = false;
@@ -27,14 +27,17 @@ public class ProgramSwitch : MonoBehaviour
     public bool telemChoiceTimer = true;
     public bool distractionAppeared = false;
     public bool tvTurnedOn = true;
+    public bool switchingProgram = true;
     public string[] clientOrder = { "Kaiju", "Boss" };
     public string clientNameEnd = "null";
     public int currentDist = 0;
     public int currentClient = 0;
     public int distrToBuy = 0;
+    private bool playsCommercial = true;
 
+    private bool ifRandomStart;
 
-
+    private bool isSwitchingProgram = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -45,13 +48,24 @@ public class ProgramSwitch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        Debug.Log(
+    $"call={clientsScript.callOngoing}, " +
+    $"after={clientsScript.afterCallSatisf}, " +
+    $"tv={tvTurnedOn}, " +
+    $"commercial={clientsScript.commercial}, " +
+    $"ent={entertainment}, " +
+    $"switching={isSwitchingProgram}");
         //If it's Kaiju time, then we do:
 
         if (clientsScript.callOngoing == true && clientsScript.afterCallSatisf == false)
         {
-            RandomEntertainment();
+            if (clientsScript.callOngoing && !isSwitchingProgram)
+            {
+                StartCoroutine(PlayAfterWhiteNoise(RandomEntertainment, maxWaitTime));
+            }
         }
-        else if (clientsScript.callOngoing == false & clientsScript.afterCallSatisf == true)
+        else if (clientsScript.callOngoing == false && clientsScript.afterCallSatisf == true)
         {
             entertainment = true;
             var clientName = clientOrder[currentClient];
@@ -67,28 +81,25 @@ public class ProgramSwitch : MonoBehaviour
 
             currentClient = currentClient + 1;
             clientsScript.afterCallSatisf = false;
-            Satisfaction(clientNameEnd);
+            StartCoroutine(PlayAfterWhiteNoise(() => Satisfaction(clientNameEnd), maxWaitTime));
         }
-        else if (clientsScript.callOngoing == false & clientsScript.afterCallSatisf == false & tvTurnedOn == false)
+        else if (clientsScript.callOngoing == false && clientsScript.afterCallSatisf == false && tvTurnedOn == false && clientsScript.commercial == true)
         {
-            //int chooseProgram = UnityEngine.Random.Range(0,1);
-            //if (chooseProgram == 0)
-            //{
-            if (clientsScript.commercial == true)
-            {
-                Telemarket(); 
-            }
-            if (entertainment == false)
-            {
-                RandomEntertainment();
-            }
-            // RandomEntertainment();
+            clientsScript.commercial = false;
+            StartCoroutine(PlayAfterWhiteNoise(Telemarket, maxWaitTime));
+            Debug.Log("Telemarket done:" + entertainment);
 
         }
-       
-         // Same for other clients
+        else if (clientsScript.callOngoing == false && clientsScript.afterCallSatisf == false && tvTurnedOn == false && clientsScript.commercial == false && entertainment == false)
+        {
+            if (!isSwitchingProgram)
+            {
+                StartCoroutine(PlayAfterWhiteNoise(RandomEntertainment, maxWaitTime));
+                Debug.Log("Ooops, you are in the ent if!:" + entertainment);
+            }
+        }
 
-         
+
     }
 
 
@@ -97,15 +108,7 @@ public class ProgramSwitch : MonoBehaviour
 
         if (tvTurnedOn == true)
         {
-            
-            int entProgram = UnityEngine.Random.Range(0, 5);
-            programScript.gifPath = nameValuesEntertainment[entProgram];
-            GameObject clonePlayer = Instantiate(myPrefabPlayer);
-            GetComponent<SingleGifPlayer>().enabled = false;
-            clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
-            StartCoroutine(EntProgramTimer());
-            Destroy(clonePlayer, 5.0f);
-            tvTurnedOn = false;
+            tvTurnedOn = false;            
         }
 
 
@@ -115,14 +118,11 @@ public class ProgramSwitch : MonoBehaviour
     public void RandomEntertainment()
     {
         entertainment = true;
-        int entProgram = UnityEngine.Random.Range(0, 4);
-        programScript.gifPath = nameValuesEntertainment[entProgram];
-
-        GameObject clonePlayer = Instantiate(myPrefabPlayer);
-        GetComponent<SingleGifPlayer>().enabled = false;
-        clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
+        ifRandomStart = true;
+        int entProgram = UnityEngine.Random.Range(0, 6);
+        PlayGifSound("/variety-show.gif");
+        programScript.PlayGif(nameValuesEntertainment[entProgram]);
         StartCoroutine(EntProgramTimer());
-        Destroy(clonePlayer, 5.0f);
 
     }
 
@@ -132,69 +132,112 @@ public class ProgramSwitch : MonoBehaviour
         GameObject.Find(nameValuesTelemarket[distrToBuy]).SetActive(true);
         distrToBuy = distrToBuy + 1;
     }
+    private IEnumerator WhiteNoise()
+    {
+        Debug.Log("WhiteNoise started by " + Time.frameCount);
+        ifRandomStart = false;
+        programScript.PlayGif("/whitenoise.gif");
 
+        PlayGifSound("/whitenoise.gif");
+
+        yield return new WaitForSeconds(switchWaitTime);
+    }
     public void Telemarket()
     {
-
-        programScript.gifPath = nameValuesTelemarket[currentDist];
-        currentDist = currentDist + 1;
+        ifRandomStart = false;
         telemChoiceTime = true;
-        GameObject clonePlayer = Instantiate(myPrefabPlayer);
-        GetComponent<SingleGifPlayer>().enabled = false;
-        clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
-        StartCoroutine(TelProgramTimer());
-        Destroy(clonePlayer, 5.0f);
 
-        programScript.gifPath = nameValuesTelemarket[currentDist];
+        playsCommercial = true;
+        programScript.PlayGif(nameValuesTelemarket[currentDist]);
         currentDist = currentDist + 1;
-        GameObject clonePlayer2 = Instantiate(myPrefabPlayer);
-        GetComponent<SingleGifPlayer>().enabled = false;
-        clonePlayer2.GetComponent<SingleGifPlayer>().enabled = true;
         StartCoroutine(TelProgramTimer());
-        Destroy(clonePlayer2, 5.0f);
 
+        Debug.Log("Telemarket done, ent state:" + entertainment);
 
     }
 
     public void Satisfaction(string clientEnd)
     {
+        ifRandomStart = false;
         for (int i = 0; i < nameValuesArray.Length; i++)
         {
             if (nameValuesArray[i] == clientEnd)
             {
                 entertainment = true;
                 Debug.Log(clientEnd);
+                clientsScript.enabled = false;
                 programScript.gifPath = nameValuesArray[i];
+                float t = Time.realtimeSinceStartup;
+
                 GameObject clonePlayer = Instantiate(myPrefabPlayer);
-                GetComponent<SingleGifPlayer>().enabled = false;
+
+                Debug.Log("Instantiate satisf took: " + (Time.realtimeSinceStartup - t));
+                //GetComponent<SingleGifPlayer>().enabled = false;
                 clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
+                PlayGifSound(programScript.gifPath);
                 StartCoroutine(EntProgramTimer());
                 Destroy(clonePlayer, 5.0f);
             }
         }
     }
 
+    private void PlayGifSound(string gifName)
+    {
+
+        string clipName = System.IO.Path.GetFileNameWithoutExtension(gifName);
+        Debug.Log("Loading: Audio/" + clipName);
+        float t = Time.realtimeSinceStartup;
+
+        AudioClip loadedClip = Resources.Load<AudioClip>("TV/" + clipName);
+
+        Debug.Log("Load took: " + (Time.realtimeSinceStartup - t));
+        if (loadedClip != null)
+        {
+            if (ifRandomStart == true)
+            {
+                audioSource.Stop();
+                audioSource.clip = loadedClip;
+                float randomTime = Random.Range(0f, audioSource.clip.length);
+
+                // Set the playback head position
+                audioSource.time = randomTime;
+
+                // Start playback
+                audioSource.Play();
+            }
+            else
+            {
+                audioSource.Stop();
+                audioSource.clip = loadedClip;
+               
+                audioSource.Play();
+            }
+        }
+        else { Debug.LogError("Couldn't load clip!"); }
+    }
+
     IEnumerator TelProgramTimer()
     {
         float timeElapsed = 0f;
         // 3. Loop every frame until the button is pressed OR time runs out
-        while (!Input.GetKeyDown(KeyCode.Keypad1) || !Input.GetKeyDown(KeyCode.Alpha1) && timeElapsed < maxWaitTime)
-        {
+        while (timeElapsed < maxWaitTime)
+        { 
             // Increase timer by the time passed since the last frame
             timeElapsed += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1) & distractionAppeared == false)
+            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1) && distractionAppeared == false)
             {
                 DistractionAppears();
                 distractionAppeared = true;
             }
-
+            if (timeElapsed >= maxWaitTime)
+                break;
             // Pause the coroutine until the next frame
             yield return null;
         }
 
         telemChoiceTimer = false;
         telemChoiceTime = false;
-        programScript.gifPath = "/black-screen.gif";
+        //programScript.gifPath = "/black-screen.gif";
         distractionAppeared = false;
 
 
@@ -204,5 +247,19 @@ public class ProgramSwitch : MonoBehaviour
     {
         yield return new WaitForSeconds(maxWaitTime);
         entertainment = false;
+    }
+
+    private IEnumerator PlayAfterWhiteNoise(System.Action nextAction, float waitAfter = 0f)
+    {
+        isSwitchingProgram = true;
+
+        yield return StartCoroutine(WhiteNoise());
+
+        nextAction?.Invoke();
+
+        if (waitAfter > 0f)
+            yield return new WaitForSeconds(waitAfter);
+
+        isSwitchingProgram = false;
     }
 }
