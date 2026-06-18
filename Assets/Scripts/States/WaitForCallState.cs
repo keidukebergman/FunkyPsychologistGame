@@ -1,5 +1,4 @@
 using System;
-using UnityEditor;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Wait State", menuName = "Scriptables/Game States/Wait", order = 0)]
