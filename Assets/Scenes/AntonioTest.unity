@@ -968,10 +968,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 370834913591254935, guid: a51289d10483d4f4db02c787f6370fb8, type: 3}
-      propertyPath: m_ChildAlignment
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 431986769967693903, guid: a51289d10483d4f4db02c787f6370fb8, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1314,18 +1310,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2885499039115050837, guid: e9a08e955a7b00d4b80f0404bd5f1ec8, type: 3}
-      propertyPath: m_sfxMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: b1d3baa1b85b1ac489bbd10d927fd614, type: 2}
     - target: {fileID: 4832338108957331301, guid: e9a08e955a7b00d4b80f0404bd5f1ec8, type: 3}
       propertyPath: m_Name
       value: SFXManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5432318106992369989, guid: e9a08e955a7b00d4b80f0404bd5f1ec8, type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 24300002, guid: b1d3baa1b85b1ac489bbd10d927fd614, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
