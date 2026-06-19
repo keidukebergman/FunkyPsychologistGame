@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_MrFeminist_Opening
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: 0ce21ed652be13542acd56ce31de69b5, type: 3}
+  Subtitles: "And I didn\u2019t want to be like a suppressive male, so I was like
+    \u2018Yeah, Tammy! I think you\u2019ll be great for presenting the bonfire!\u2019
+    I really hope she gets the spot, it would be so awesome to have a La-tinks section
+    leader for once in our very Moldovan company\u2019s lifetime\u2026 But then I
+    was like snooping through Emma\u2019s social media, and it turned out, she\u2019d
+    actually liked this one single robophobic tweet\u2026 Are chilli dogs appropriate
+    for a BBQ?"

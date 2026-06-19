@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_MrBusiness_Opening
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: f29ffa8925b5fe9498760b428cd04727, type: 3}
+  Subtitles: "I just wanted you to know that I\u2019ve decided to go forward with
+    another candidate for the mother of my children\u2026 Do you think that\u2019s
+    too harsh? It\u2019s not meant to be an amicable divorce, just a regular one.
+    After all, she did make me sign the pre-nup. I figure we split the children 50/50.
+    She takes Harold, since he\u2019s doing well in school. Since I earn more, I\u2019m
+    taking Annie, she needs all the support she can get. Should we still go on family
+    vacations together?"

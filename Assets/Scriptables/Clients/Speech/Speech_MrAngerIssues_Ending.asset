@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_MrAngerIssues_Ending
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: b1f38f10148a7de4da85b720fc4c02ce, type: 3}
+  Subtitles: "Anyway, I think I might actually want to ask her out, seriously\u2026
+    If only this GODDAMN FUCKING boss of mine gives me an actual damn vacation. How
+    fucked am I if I can\u2019t even get the goddamn vehicles to move? I\u2019m a
+    fucking mechanic by trade! Like Jesus fucking Christ I want to just throw the
+    wrench at him, you know what I mean? Should I try giving her antifreeze, to tinker
+    with?"

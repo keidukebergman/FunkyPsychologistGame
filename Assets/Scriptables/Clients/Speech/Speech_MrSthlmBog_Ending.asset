@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_MrSthlmBog_Ending
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: 1d17a8d1204c5a840badf223e84742a6, type: 3}
+  Subtitles: "\u2026And then it turned out, third guy brought his girlfriend. So
+    I\u2019m pretty certain both of them were consenting, but me & BFF totally did
+    not consent to seeing that, it was pretty explicit\u2026 Never thought we\u2019d
+    have to add that clause to the set of rules for reenactment funsies, but both
+    me and BFF agreed that we\u2019re not banning girls. Would it just be easier
+    if we banned the third guy instead?"
