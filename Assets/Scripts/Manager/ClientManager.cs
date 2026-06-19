@@ -22,7 +22,8 @@ public class ClientManager : MonoBehaviour
 
     public Client PullClient() 
     {
-        int n = Random.Range(0, _waitingClients.Count - 1);
+        //int n = Random.Range(0, _waitingClients.Count - 1);
+        int n = 0;
         CurrentClient = _waitingClients[n];
         _waitingClients.RemoveAt(n);
         return CurrentClient;

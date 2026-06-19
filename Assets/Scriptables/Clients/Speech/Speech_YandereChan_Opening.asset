@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_YandereChan_Opening
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: 4ab795efc081ae14d81789277b99a5eb, type: 3}
+  Subtitles: "\u2026And I think she\u2019s amazing, ok? Like she\u2019s the bestest,
+    totally bestest, sweetest lady in the whole world. But like\u2026 That girl turned
+    out to be a total psycho. Did you know that she\u2019s ok with keeping her bunnies
+    in an apartment!? People like her should just die, after all. Don\u2019t they
+    care about the environment even a single bit? "

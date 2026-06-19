@@ -16,7 +16,14 @@ MonoBehaviour:
   _satisfactionThreshold: 0.8
   _speeches:
   - {fileID: 11400000, guid: 22881a39ec208d54d9039b9d3e8247dd, type: 2}
+  - {fileID: 11400000, guid: c4eb59ce0b146c645bdb6f2586a68e46, type: 2}
   _availableResponses:
-  - Response: {fileID: 0}
+  - Response: {fileID: 11400000, guid: 0a0f8c5b1d58ccc4d86ce97f71b36730, type: 2}
+    LikesIt: 1
+  - Response: {fileID: 11400000, guid: 640b099a76a40d94face413d5e65b893, type: 2}
+    LikesIt: 1
+  - Response: {fileID: 11400000, guid: 3531833353190904f92ca5c9ad3f8a86, type: 2}
+    LikesIt: 1
+  - Response: {fileID: 11400000, guid: df84aead85e825a4480c2f547ac6f54b, type: 2}
     LikesIt: 0
   _likesFinalPositiveResponse: 1

@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_Kaiju_Ending
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: 1d64b65177a019a469ca93dcda131e30, type: 3}
+  Subtitles: "I hate to point the finger, but think it is my family that is the problem.
+    They\u2019ve been very restrictive throughout my childhood, trying to mold me
+    into what they want me to be. Not going up inland, not taking a trip to the city,
+    not seeing human stuff.  I am sick and tired of it. I want to do my own thing,
+    cut a bit loose, and rediscover my roots. I think I might be ready. Say, should
+    I do it?"

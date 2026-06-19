@@ -6,6 +6,9 @@ public class Client : ScriptableObject
     [SerializeField] private string _clientName;
     [SerializeField] private float _satisfactionThreshold = .8f;
     [Space]
+    [SerializeField] private int _cashQ1Reward = 500;
+    [SerializeField] private int _cashQ2Reward = 500;
+    [Space]
     [SerializeField] private ClientSpeech[] _speeches;
     [Space]
     [SerializeField] private ClientResponse[] _availableResponses;

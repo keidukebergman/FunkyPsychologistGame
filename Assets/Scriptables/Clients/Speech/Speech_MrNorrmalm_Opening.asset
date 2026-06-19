@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_MrNorrmalm_Opening
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: adb7bea0237e1aa4bb638029bc97dad1, type: 3}
+  Subtitles: "Man, I don\u2019t get to talk to a cutie like you that often\u2026
+    I bet you\u2019re single, huh? Well, it\u2019s not like you\u2019ve mentioned
+    any boyfriend\u2026 Right, the woman I used to date? We just fell out of love\u2026
+    The poly thing wasn\u2019t part of it, I\u2019d met her parents and everything.
+    Good god, I hate cats. They\u2019re like little demons who shit on everything,
+    do absolutely jack shit, and get praised just for existing. Since when did they
+    get so great? But seriously, it\u2019s not like women are wired to have more
+    partners, right?"

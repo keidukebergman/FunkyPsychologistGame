@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_MsGothenburg_Ending
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: 3499826eac4165742ba31bf5e372d3d2, type: 3}
+  Subtitles: "I know right! And she\u2019s been such a good friend to me too, especially
+    with the whole \u2018sister breaking into my apartment\u2019 thing\u2026 It\u2019s
+    not really her fault, she can\u2019t help it, her dad refused to get her diagnosed
+    with lactation sensitivity as an infant, and she\u2019s my sister\u2026 So I
+    feel like I can\u2019t really tell her no, since I never called Child Proteciton
+    Service on her as a kid. It\u2019s fine if I just leave it be, right?"

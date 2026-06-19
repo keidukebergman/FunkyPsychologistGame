@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 767539b6e0ae9974d8dcef969dbf9df5, type: 3}
+  m_Name: Client_MsGothenburg
+  m_EditorClassIdentifier: Assembly-CSharp::Client
+  _clientName: MsGothenburg
+  _satisfactionThreshold: 0.8
+  _cashQ1Reward: 500
+  _cashQ2Reward: 500
+  _speeches:
+  - {fileID: 11400000, guid: b175a2604c2954444ae30318545595f6, type: 2}
+  - {fileID: 11400000, guid: 2b57cc072d25c634ab1ca18c25f62ba0, type: 2}
+  _availableResponses:
+  - Response: {fileID: 11400000, guid: 640b099a76a40d94face413d5e65b893, type: 2}
+    LikesIt: 0
+  - Response: {fileID: 11400000, guid: 3531833353190904f92ca5c9ad3f8a86, type: 2}
+    LikesIt: 1
+  - Response: {fileID: 11400000, guid: 0a0f8c5b1d58ccc4d86ce97f71b36730, type: 2}
+    LikesIt: 1
+  - Response: {fileID: 11400000, guid: 5d999616931f4dc45a4ff41d0dd878ca, type: 2}
+    LikesIt: 0
+  _likesFinalPositiveResponse: 1
