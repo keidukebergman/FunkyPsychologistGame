@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
-  m_Name: Speech_Boss_Intro
+  m_Name: Speech_Boss_Opening
   m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
   Clip: {fileID: 8300000, guid: 44211c92b1ed98d40937cebcb11e8d98, type: 3}
   Subtitles: "How are you doing? I don\u2019t want to be a bother, but you know -
