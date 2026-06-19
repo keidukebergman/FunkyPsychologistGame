@@ -50,10 +50,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141c94b6c24e6944b902b576ef538bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SingleGifPlayer
-  gifPath: /black-screen.gif
   renderMode: 0
   targetImage: {fileID: 0}
   targetRenderer: {fileID: 0}
+  gifPath: /black-screen.gif
 --- !u!114 &6170772247178824420
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,6 +69,8 @@ MonoBehaviour:
   programScript: {fileID: 8858018950445925836}
   clientsScript: {fileID: 3170607931775717172}
   myPrefabPlayer: {fileID: 5975059945959913210}
+  audioSource: {fileID: 0}
+  gifName: 
   nameValuesArray:
   - /KaijuGoodEnd.gif
   - /KaijuBadEnd.gif
@@ -81,7 +83,9 @@ MonoBehaviour:
   - /newtons-cradle1.gif
   - /newtons-cradle.gif
   - /fidgetSpinner.gif
+  nameValuesDistractions: []
   maxWaitTime: 5
+  switchWaitTime: 2
   timerIsRunning: 0
   entertainment: 0
   callOngoing: 0
@@ -90,6 +94,7 @@ MonoBehaviour:
   telemChoiceTimer: 1
   distractionAppeared: 0
   tvTurnedOn: 1
+  switchingProgram: 1
   clientOrder:
   - Kaiju
   - Boss
@@ -112,3 +117,4 @@ MonoBehaviour:
   callOngoing: 0
   afterCallSatisf: 0
   satisfaction: 1
+  commercial: 0
