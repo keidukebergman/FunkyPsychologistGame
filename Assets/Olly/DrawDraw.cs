@@ -20,6 +20,7 @@ public class DrawDraw : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
     //The array used to reset the image to be empty
     Color[] resetColorsArray;
+
     //The color filled into the "resetColorsArray"
     Color resetColor;
 

@@ -33,12 +33,14 @@ public class CameraLook : MonoBehaviour
 
         currentPitch = transform.localEulerAngles.x;
         currentYaw = transform.localEulerAngles.y;
-        if (currentYaw > 180f) currentYaw -= 360f;
-        if (currentPitch > 180f) currentPitch -= 360f;
     }
 
     private void Update()
     {
+        if(Time.deltaTime > 0.5)
+        {
+            return;
+        }
         float mouseX = Input.GetAxis("Mouse X") * sensitivityX * Time.deltaTime;
         float mouseY = Input.GetAxis("Mouse Y") * sensitivityY * Time.deltaTime;
 

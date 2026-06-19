@@ -2,5 +2,6 @@ using UnityEngine;
 
 public interface Interactable
 {
-    public void OnInteract();
+    public bool isOneShot {  get; set; }
+    public void OnInteract(RaycastHit raycastHit);
 }
