@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -78,7 +79,6 @@ public class CursorManager : MonoBehaviour
     void Update()
     {
 
-
         if (drawing)
         {
             // Smoothly follow the real mouse while staying "heavy"
@@ -100,6 +100,7 @@ public class CursorManager : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
+            Debug.Log("Hit: " + hit.collider.name + " Tag: " + hit.collider.tag);
             Vector3 localHit = hit.collider.transform.InverseTransformPoint(hit.point);
             // ---------- Cursor sprite ----------
             if (hit.collider.CompareTag("Drawable"))
@@ -132,72 +133,85 @@ public class CursorManager : MonoBehaviour
 
             }
             else if (hit.collider.CompareTag("TableDraw"))
+            {
+                cursorImage.sprite = drawCursor;
+
+                Vector2 localPoint;
+
+                if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+                    tableRect,
+                    Input.mousePosition,
+                    cam,
+                    out localPoint))
                 {
-                    cursorImage.sprite = drawCursor;
+                    float tx = Mathf.InverseLerp(
+                        -tableRect.rect.width * 0.5f,
+                         tableRect.rect.width * 0.5f,
+                         localPoint.x);
 
-                    Vector2 localPoint;
+                    float ty = Mathf.InverseLerp(
+                        -tableRect.rect.height * 0.5f,
+                         tableRect.rect.height * 0.5f,
+                         localPoint.y);
 
-                    if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
-                        tableRect,
-                        Input.mousePosition,
-                        cam,
-                        out localPoint))
-                    {
-                        float tx = Mathf.InverseLerp(
-                            -tableRect.rect.width * 0.5f,
-                             tableRect.rect.width * 0.5f,
-                             localPoint.x);
+                    Vector2 bottom = Vector2.Lerp(bottomLeftOffset, bottomRightOffset, tx);
+                    Vector2 top = Vector2.Lerp(topLeftOffset, topRightOffset, tx);
 
-                        float ty = Mathf.InverseLerp(
-                            -tableRect.rect.height * 0.5f,
-                             tableRect.rect.height * 0.5f,
-                             localPoint.y);
+                    currentOffset = Vector2.Lerp(bottom, top, ty);
 
-                        Vector2 bottom = Vector2.Lerp(bottomLeftOffset, bottomRightOffset, tx);
-                        Vector2 top = Vector2.Lerp(topLeftOffset, topRightOffset, tx);
+                    Debug.Log($"Local: {localPoint}  Offset: {currentOffset}");
 
-                        currentOffset = Vector2.Lerp(bottom, top, ty);
-
-                        Debug.Log($"Local: {localPoint}  Offset: {currentOffset}");
-
-                            currentOffset = new Vector2(-500, 0);
+                    currentOffset = new Vector2(-500, 0);
                 }
-                    else
-                    {
-                        currentOffset = bottomOffset;
-                    }
-
-                    if (lockWhileDrawing && Input.GetMouseButtonDown(0))
-                    {
-                        drawing = true;
-                        lockedPosition = Input.mousePosition;
-                    }
-                    else
-                    {
-                        currentOffset = bottomOffset;
+                else
+                {
+                    currentOffset = bottomOffset;
                 }
+
+                if (lockWhileDrawing && Input.GetMouseButtonDown(0))
+                {
+                    drawing = true;
+                    lockedPosition = Input.mousePosition;
+                }
+                else
+                {
+                    currentOffset = bottomOffset;
                 }
             }
-            else
+            
+            if (hit.collider.TryGetComponent(out ClickableInteractable clickable) && Input.GetMouseButtonDown(0))
             {
-                cursorImage.sprite = defaultCursor;
-                currentOffset = drawOffset;
+                clickable.OnInteract(hit);
             }
-
-            // Cursor scale
-            float t = Mathf.Clamp01(hit.distance / maxDistance);
-            float targetScale = Mathf.Lerp(maxScale, minScale, t);
-
-            cursorRect.localScale = Vector3.Lerp(
-                    cursorRect.localScale,
-                    Vector3.one * targetScale * cursorSize,
-                    Time.deltaTime * scaleSmooth);
-
-            // Stick cursor to hit point
-            if (stickToSurface)
+            else if (hit.collider.TryGetComponent(out PersistentInteractable persistent) && Input.GetMouseButton(0))
             {
-                targetPosition = cam.WorldToScreenPoint(hit.point);
+                persistent.OnInteract(new RaycastHit());
             }
+        }
+        else
+        {
+            cursorImage.sprite = defaultCursor;
+            currentOffset = drawOffset;
+                Debug.Log("Nothing hit");
+        }
+
+        // Cursor scale
+        float t = Mathf.Clamp01(hit.distance / maxDistance);
+        float targetScale = Mathf.Lerp(maxScale, minScale, t);
+
+        cursorRect.localScale = Vector3.Lerp(
+                cursorRect.localScale,
+                Vector3.one * targetScale * cursorSize,
+                Time.deltaTime * scaleSmooth);
+
+
+        // Stick cursor to hit point
+ /*if (stickToSurface)
+    {
+       targetPosition = cam.WorldToScreenPoint(hit.point);
+       }
+        
+
         else
         {
             cursorImage.sprite = defaultCursor;
@@ -207,8 +221,10 @@ public class CursorManager : MonoBehaviour
                 Vector3.one * cursorSize,
                 Time.deltaTime * scaleSmooth);
         }
-        
-        cursorRect.position = Vector3.Lerp(cursorRect.position, targetPosition + (Vector3) currentOffset,
+ */
+targetPosition = Input.mousePosition;
+
+cursorRect.position = Vector3.Lerp(cursorRect.position, targetPosition + (Vector3) currentOffset,
         Time.deltaTime* stickSpeed);
 
     }
