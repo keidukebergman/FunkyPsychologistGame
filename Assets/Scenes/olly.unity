@@ -307,8 +307,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: And how does that make you feel?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de4edda2b1fbb1e4b9d4a20db174c9fb, type: 2}
-  m_sharedMaterial: {fileID: 1266675196348705715, guid: de4edda2b1fbb1e4b9d4a20db174c9fb, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1144,8 +1144,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: How is your relathionship with your Dad?
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de4edda2b1fbb1e4b9d4a20db174c9fb, type: 2}
-  m_sharedMaterial: {fileID: 1266675196348705715, guid: de4edda2b1fbb1e4b9d4a20db174c9fb, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1852,8 +1852,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: I am sorry to hear that..
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de4edda2b1fbb1e4b9d4a20db174c9fb, type: 2}
-  m_sharedMaterial: {fileID: 1266675196348705715, guid: de4edda2b1fbb1e4b9d4a20db174c9fb, type: 2}
+  m_fontAsset: {fileID: 0}
+  m_sharedMaterial: {fileID: 0}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1987,10 +1987,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: fdcjy
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: de4edda2b1fbb1e4b9d4a20db174c9fb, type: 2}
-  m_sharedMaterial: {fileID: 1266675196348705715, guid: de4edda2b1fbb1e4b9d4a20db174c9fb, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: cd94999afc69e5e40a2c4021ab39317a, type: 2}
+  m_sharedMaterial: {fileID: 3000209105810833103, guid: cd94999afc69e5e40a2c4021ab39317a, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2020,7 +2020,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 1
+  m_fontStyle: 8
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
