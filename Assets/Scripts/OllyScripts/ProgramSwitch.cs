@@ -16,6 +16,7 @@ public class ProgramSwitch : MonoBehaviour
     public string[] nameValuesArray;
     public string[] nameValuesEntertainment;
     public string[] nameValuesTelemarket = { "fidgetSpinner", "newtonsCradle" };
+    public GameObject[] nameValuesDistractions = { };
 
     public float maxWaitTime = 5.0f;
     public float switchWaitTime = 2.0f;
@@ -128,8 +129,14 @@ public class ProgramSwitch : MonoBehaviour
 
     public void DistractionAppears()
     {
+        if (distrToBuy >= nameValuesDistractions.Length)
+            return;
 
-        GameObject.Find(nameValuesTelemarket[distrToBuy]).SetActive(true);
+        var newDistraction = nameValuesDistractions[distrToBuy];
+        if (newDistraction != null)
+        {
+            newDistraction.SetActive(true);
+        }
         distrToBuy = distrToBuy + 1;
     }
     private IEnumerator WhiteNoise()
@@ -224,13 +231,17 @@ public class ProgramSwitch : MonoBehaviour
         { 
             // Increase timer by the time passed since the last frame
             timeElapsed += Time.deltaTime;
-            if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1) && distractionAppeared == false)
+            if (distractionAppeared == false)
             {
-                DistractionAppears();
-                distractionAppeared = true;
+                if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+                {
+                    DistractionAppears();
+                    distractionAppeared = true;
+                }
             }
             if (timeElapsed >= maxWaitTime)
                 break;
+
             // Pause the coroutine until the next frame
             yield return null;
         }
