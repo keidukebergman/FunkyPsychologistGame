@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9e7d0954553594ebb4351359a0d4e5, type: 3}
+  m_Name: Speech_Kaiju_Opening
+  m_EditorClassIdentifier: Assembly-CSharp::ClientSpeech
+  Clip: {fileID: 8300000, guid: 9d093ca4ff8e6784a80fd63e80930d0c, type: 3}
+  Subtitles: "Hello. No, wait, sorry, I should probably hang up. I wouldn\u2019t
+    want to waste your time. Heeeeh, maybe a short talk? So, thing is, I am someone
+    who feels like I have lost track of who I am. You know, it makes me feel inadequate
+    and\u2026 and it makes me unsure in everything I do. It is kind of silly, when
+    you are so big and powerful, but feel so small and lost. I have a purpose I am
+    not living up to. It is there, somewhere deep down, I just know it. But, like,
+    society, my friends and family have all sort of forced me into the lifestyle
+    I am living right now. It just feels awful. I just feel like a fraud. "

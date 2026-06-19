@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82ae8316a165295459069b296eb03733, type: 3}
   m_Name: WaitState
   m_EditorClassIdentifier: Assembly-CSharp::WaitForCallState
-  _waitForCallDuration: 5
+  _waitForCallDuration: 1
+  _pickupDelay: 0.5

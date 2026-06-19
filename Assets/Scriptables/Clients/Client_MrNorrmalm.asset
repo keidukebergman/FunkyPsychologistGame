@@ -10,22 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 767539b6e0ae9974d8dcef969dbf9df5, type: 3}
-  m_Name: Client_OtherPsychologist
+  m_Name: Client_MrNorrmalm
   m_EditorClassIdentifier: Assembly-CSharp::Client
-  _clientName: OtherPsychologist
+  _clientName: MrNorrmalm
   _satisfactionThreshold: 0.8
   _cashQ1Reward: 500
   _cashQ2Reward: 500
   _speeches:
-  - {fileID: 11400000, guid: 3ea01e30eea7d934685b75728242ab1e, type: 2}
-  - {fileID: 11400000, guid: 47fdb77debcf2724895b3abf7352190b, type: 2}
+  - {fileID: 11400000, guid: c670a7bb27dcfea4f8235b4d3ec822c6, type: 2}
+  - {fileID: 11400000, guid: 89eb9ec86e551b5499541fc8807c737d, type: 2}
   _availableResponses:
   - Response: {fileID: 11400000, guid: 3531833353190904f92ca5c9ad3f8a86, type: 2}
     LikesIt: 1
-  - Response: {fileID: 11400000, guid: 640b099a76a40d94face413d5e65b893, type: 2}
+  - Response: {fileID: 11400000, guid: 72085756678bc6544977549bdecb83ae, type: 2}
+    LikesIt: 0
+  - Response: {fileID: 11400000, guid: df84aead85e825a4480c2f547ac6f54b, type: 2}
     LikesIt: 0
   - Response: {fileID: 11400000, guid: 0a0f8c5b1d58ccc4d86ce97f71b36730, type: 2}
     LikesIt: 1
-  - Response: {fileID: 11400000, guid: df84aead85e825a4480c2f547ac6f54b, type: 2}
-    LikesIt: 0
   _likesFinalPositiveResponse: 0
