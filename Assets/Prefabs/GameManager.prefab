@@ -174,7 +174,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 6d597f815c3748d458b5faabfb342a07, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.15
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -307,11 +307,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de4917ccf016e864b8b2755b68ab335d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  m_startingGameState: 0
   m_gameStates:
   - {fileID: 11400000, guid: ad5035a9e3a7a9a41bfc5a0e3f83d44a, type: 2}
   - {fileID: 11400000, guid: bc59fbc3a748f4a47a1109bf10a72810, type: 2}
   - {fileID: 11400000, guid: c3f00c1f07a17794697dee0b9c3f5e3b, type: 2}
   - {fileID: 11400000, guid: 5cc94e0531a49c04b84837dedb1101ad, type: 2}
+  - {fileID: 11400000, guid: 833d4ba804c882747a8ee2dcc48aed03, type: 2}
 --- !u!114 &6219882606873152336
 MonoBehaviour:
   m_ObjectHideFlags: 0

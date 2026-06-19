@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class CallManager : MonoBehaviour
 {
@@ -32,30 +34,12 @@ public class CallManager : MonoBehaviour
 
     private ChoiceManager _choiceManager;
 
+    private Coroutine _speechCoroutine;
+
     private void Awake()
     {
         _choiceManager = GetComponent<ChoiceManager>();
 
-    }
-
-
-    private float beforeSample = 1;
-    public void Tick()
-    {
-        if (beforeSample < m_clientSource.timeSamples)
-        {
-            // Still Playing Audio, Keep Following Value!
-            beforeSample = m_clientSource.timeSamples - 1f;
-        }
-        else if (beforeSample > m_clientSource.timeSamples)
-        {
-            // If 'beforeSample' bigger than timeSamples,
-            // It means timeSamples set '0'.
-
-            SpeechFinished();
-
-            beforeSample = m_clientSource.timeSamples - 1f;
-        }
     }
 
     public void PlayCall(Client p_client)
@@ -106,6 +90,24 @@ public class CallManager : MonoBehaviour
     {
         m_clientSource.clip = CurrentClient.Speeches[m_callClientSpeechIndex].Clip;
         m_clientSource.Play();
+
+        if (_speechCoroutine != null)
+            StopCoroutine(_speechCoroutine);
+        _speechCoroutine = StartCoroutine(WaitForSpeechEnding());
+    }
+    private IEnumerator WaitForSpeechEnding()
+    {
+        // Wait a brief moment to let Unity register the .Play() state
+        yield return null;
+
+        // Loop continuously as long as the AudioSource indicates active playback
+        while (m_clientSource.isPlaying)
+        {
+            yield return null;
+        }
+
+        // This section executes instantly after the clip finishes or gets stopped
+        SpeechFinished();
     }
 
     public void StopCall()
