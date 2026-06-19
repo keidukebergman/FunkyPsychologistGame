@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4b102e1d0582fa4795819c32184a1a1, type: 3}
+  m_Name: SFXRandom_MhmmYupInhales
+  m_EditorClassIdentifier: Assembly-CSharp::SFXRandom
+  _collection:
+  - Clip: {fileID: 8300000, guid: fb75e2917078a3147bb5b96d6ccf24d4, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 8f7954b669ce052469a04e15ef596e09, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 5b9baca0ceb4cee478c68128dbaebc1c, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: b426718d5c499f64fbc8b6e9e7884672, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: c5b6b0b0b44cedb4983d8160e9074329, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: aaaf49b1e81d0954abdb6edf01ad9256, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 5034e86d4e0043f40a6c466f33b40ecc, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 09f5899ebe64031458f563b703bcfa0e, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 4fd5a0dcd3b2b8b49832e64dc8f8cabd, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: e0e7621274040b948a631ce866296643, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 9315de48fd145c544bdf4182dc623883, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 2cf106bdd6a22754fa302ed678091d1c, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 8cdc88986eb2c5d4886c95c2605da2be, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 72fcb02588c79be4a8cf1a481f5ca770, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 091a7dc411a432540b3b511811a17bf4, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 04290a6755e4e3b498a4ba3e235e93e7, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 97ac4517d68834948bf882c55ee25b07, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 913639210f71181418e45845c2bf253c, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 8a7676017ff3db3488a7d17378f0de28, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: e9ade54fb7d0317449d568e4c31cee97, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: ef2b1a4d1760ef14da488cb856009113, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: f335e769fd430ec419dd7e5a90430e92, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: ecaf50a12dd42cc4da01c178e743468f, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 76528f34127caaa439a3adfa4dc9ad09, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: ce5e18f871e4322489df7ee7759e2af2, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 0a8250e983027f041be33a3aacd81397, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 591772ee968d8e44ebafe7126cd0f0bb, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 869c8efb0a6c80c49ac81a83f2ae2e26, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 4f2a510743c06844abbe9f47f3abdbeb, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 5ba198bd6c033944c88d6b183b7e6a8f, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: d243bf50fa904234298cb94f6adf2040, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 343f45d566953b14197569f92bc255ed, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: fbaf702a08efc9e46a257971867e3db2, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: b886e5ae3f3087a4c83db14c3c75650e, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: d93b6306d6698184e8a845bdf42e604d, type: 3}
+    Volume: 1
+    RandomizePitch: 0
+  - Clip: {fileID: 8300000, guid: 81403a5d26346384ea94a3eb0aeba2d4, type: 3}
+    Volume: 1
+    RandomizePitch: 0

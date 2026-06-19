@@ -227,8 +227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a618a23813b1868459fcbe6c7085d9ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerNod
-  nodCooldown: 0.3
+  nodCooldown: 0.5
   stimulationAmount: 5
+  isOneShot: 1
 --- !u!1001 &6948720601951779777
 PrefabInstance:
   m_ObjectHideFlags: 0
