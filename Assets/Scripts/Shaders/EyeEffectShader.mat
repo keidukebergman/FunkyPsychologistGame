@@ -110,7 +110,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Closeness: 2.46
     - _Cull: 2
-    - _Curvature: -1.8604548
+    - _Curvature: 0
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -118,7 +118,7 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _EyelidHeight: 1
-    - _FadeAmount: 0.11418322
+    - _FadeAmount: 1
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
