@@ -4,6 +4,7 @@ public class CameraZoomControls : MonoBehaviour, Interactable
 {
     [SerializeField] private float minimumFov, maximumFov = 70;
     [SerializeField] private float fovZoomSpeed = 20;
+    float fovZoom = 55;
 
     public bool isOneShot { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
@@ -23,18 +24,19 @@ public class CameraZoomControls : MonoBehaviour, Interactable
     {
         if(Input.GetAxis("Mouse ScrollWheel") > 0 || Input.GetKey(KeyCode.K))
         {
-            GetComponent<Camera>().fieldOfView = maximumFov;
+            fovZoom = maximumFov;
         }
         else if (Input.GetAxis("Mouse ScrollWheel") < 0 || Input.GetKey(KeyCode.L))
         {
-            GetComponent<Camera>().fieldOfView = minimumFov;
+            fovZoom = minimumFov;
         }
 
-        if (GetComponent<Camera>().fieldOfView == minimumFov)
+        if (fovZoom == minimumFov)
         {
             Debug.Log("Raycast firing");
             RaycastHit hit;
             //TV Logic
         }
+        GetComponent<Camera>().fieldOfView = Mathf.MoveTowards(GetComponent<Camera>().fieldOfView, fovZoom, fovZoomSpeed * Time.deltaTime);
     }
 }

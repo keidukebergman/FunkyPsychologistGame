@@ -1253,7 +1253,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   minimumFov: 30
   maximumFov: 55
-  fovZoomSpeed: 20
+  fovZoomSpeed: 100
 --- !u!1 &1928812296
 GameObject:
   m_ObjectHideFlags: 0
