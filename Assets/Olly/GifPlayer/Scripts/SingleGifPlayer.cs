@@ -82,3 +82,27 @@ public class SingleGifPlayer : MonoBehaviour
         }
     }
 }
+
+/*
+void Start()
+{
+    LoadGif();
+}
+
+void LoadGif()
+{
+    if (GifCacheManager.Instance == null)
+    {
+        Debug.LogError("No GifCacheManager in scene!");
+        return;
+    }
+
+    if (!GifCacheManager.Instance.TryGet(gifPath, out texture2DList, out frameDelay, out sprites))
+    {
+        Debug.Log("Gif not cached yet, loading now: " + gifPath);
+        GifCacheManager.Instance.PreloadGif(gifPath);
+
+        GifCacheManager.Instance.TryGet(gifPath, out texture2DList, out frameDelay, out sprites);
+    }
+}
+*/

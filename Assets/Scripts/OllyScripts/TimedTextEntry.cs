@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -17,9 +17,53 @@ public class TimedTextEntry : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.03f;
     [SerializeField] private float pauseBetweenPages = 1f;
 
+
+    [SerializeField] private float maxCorruption = 100f;
+    [SerializeField] private float glitchRefreshRate = 0.05f;
+
+    private string currentTypedText = "";
+    private Coroutine glitchCoroutine;
+    [SerializeField] private FatigueManager fatigueManager;
+
     private void Start()
     {
         StartCoroutine(TypeText());
+        glitchCoroutine = StartCoroutine(GlitchRoutine());
+    }
+
+    private string GlitchString(string original, float corruption)
+    {
+        char[] chars = original.ToCharArray();
+
+        for (int i = 0; i < chars.Length; i++)
+        {
+            char c = chars[i];
+
+            // ❌ Never touch spaces or punctuation
+            if (!char.IsLetter(c))
+                continue;
+
+            // chance of corruption
+            if (Random.value > corruption)
+                continue;
+
+            // 👉 ONLY replace with other letters (no symbols)
+            bool upper = char.IsUpper(c);
+
+            char newChar;
+
+            do
+            {
+                newChar = (char)Random.Range('a', 'z' + 1);
+                if (upper)
+                    newChar = char.ToUpper(newChar);
+
+            } while (newChar == c); // avoid replacing with itself
+
+            chars[i] = newChar;
+        }
+
+        return new string(chars);
     }
 
     IEnumerator TypeText()
@@ -59,7 +103,8 @@ public class TimedTextEntry : MonoBehaviour
 
             foreach (char c in displayText)
             {
-                textBox.text += c;
+                currentTypedText += c;
+                textBox.text = currentTypedText;
                 yield return new WaitForSeconds(typingSpeed);
             }
 
@@ -76,6 +121,22 @@ public class TimedTextEntry : MonoBehaviour
             {
                 startIndex++;
             }
+        }
+    }
+    private IEnumerator GlitchRoutine()
+    {
+        while (true)
+        {
+            if (!string.IsNullOrEmpty(currentTypedText))
+            {
+                //corruption -- variable from fatigue
+                float corruption =
+                    Mathf.Clamp01(fatigueManager.GetFatigue() / maxCorruption);
+
+                textBox.text = GlitchString(currentTypedText, corruption);
+            }
+
+            yield return new WaitForSeconds(glitchRefreshRate);
         }
     }
 }
