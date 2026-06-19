@@ -4,9 +4,9 @@ public class ClickableTVRemote : ClickableInteractable
 {
     [SerializeField] private ProgramSwitch _TVSwitch;
 
-    public override void OnInteract()
+    public override void OnInteract(RaycastHit raycastHit)
     {
-        //base.OnInteract();
+        //base.OnInteract(raycastHit);
         _TVSwitch.TurnOnTv();
     }
 }

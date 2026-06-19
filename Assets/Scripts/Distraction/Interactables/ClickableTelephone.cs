@@ -7,9 +7,11 @@ public class ClickableTelephone : ClickableInteractable
 
     public bool Held { get; set; }
 
-    public override void OnInteract()
+    public override void OnInteract(RaycastHit raycastHit)
     {
-        //base.OnInteract();
+        // should telephone reduce fatigue while picking it up once?
+
+        //base.OnInteract(raycastHit);
         OnClick?.Invoke();
     }
 }
