@@ -59,7 +59,6 @@ public class DrawViewController1 : MonoBehaviour, IBeginDragHandler, IDragHandle
 
         //Debug.Log("Mouse Screen Pos: " + Input.mousePosition);
         Debug.Log("Over UI: " + IsPointerOverUIObject());
-        //KeyboardInput();
     }
 
     private bool IsPointerOverUIObject()
@@ -70,45 +69,6 @@ public class DrawViewController1 : MonoBehaviour, IBeginDragHandler, IDragHandle
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);
         return results.Count > 0;
     }
-    void KeyboardInput() {
-        // We have different undo/redo controls in the editor,
-        // so that way you don't accidentally undo something in the scene
-#if UNITY_EDITOR
-        bool isShiftHeldDown = Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift);
-        bool isZHeldDown = Input.GetKeyDown(KeyCode.Z);
-        bool isYHeldDown = Input.GetKeyDown(KeyCode.Y);
-
-        if (isShiftHeldDown &&
-            isZHeldDown &&
-            drawSettings.CanUndo()) {
-            // if there's something to undo, pull the last state off of the stack, and apply those changes
-            currentColors = drawSettings.Undo(drawTexture.GetPixels32());
-            ApplyCurrentColors();
-        }
-
-        if (isShiftHeldDown &&
-            isYHeldDown &&
-            drawSettings.CanRedo()) {
-            currentColors = drawSettings.Redo(drawTexture.GetPixels32());
-            ApplyCurrentColors();
-        }
-        //These controls only take effect if we build the game! See: Platform dependent compilation
-#else
-        bool isControlHeldDown = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
-        bool isZHeldDown = Input.GetKeyDown(KeyCode.Z);
-        if (isControlHeldDown && isZHeldDown) {
-            if (Input.GetKey(KeyCode.LeftShift) && 
-                drawViewModel.CanRedo()) {
-                currentColors = drawViewModel.Redo(drawTexture.GetPixels32());
-                ApplyCurrentColors();
-            } else if (drawViewModel.CanUndo()) {
-                currentColors = drawViewModel.Undo(drawTexture.GetPixels32());
-                ApplyCurrentColors();
-            }
-        }
-#endif
-    }
-
 
     // Pass in a point in PIXEL coordinates
     // Changes the surrounding pixels of the pixelPosition to the drawSetting.drawColor

@@ -6,6 +6,7 @@ public class ProgramSwitchScript : MonoBehaviour
     public bool afterCallSatisf = false;
     public bool satisfaction = false;
     public bool commercial = false;
+    public bool tvTurnedOn = false;
 
     public void SwitchToNews()
     {
@@ -15,7 +16,9 @@ public class ProgramSwitchScript : MonoBehaviour
 
     public void SwitchToCommercial()
     {
+        tvTurnedOn = false;
         callOngoing = false;
+        afterCallSatisf = false;
         satisfaction = false;
         commercial = true;
     }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Wait State", menuName = "Scriptables/Game States/Wait", order = 0)]
@@ -10,8 +11,19 @@ public class WaitForCallState : GameState
     private float _pickupDelayTime;
     private bool _pickedUpPhone;
 
+    private ClickableTelephone _telephone;
+
+    public override void Initialize(GameManager game, Player player, PlayerInput input)
+    {
+        base.Initialize(game, player, input);
+
+        _telephone = game.Telephone;
+    }
+
     public override void Enter()
     {
+        _telephone.OnClick += OnTelephonePickup;
+
         _waitTime = _waitForCallDuration;
         _pickupDelayTime = _pickupDelay;
 
@@ -28,7 +40,7 @@ public class WaitForCallState : GameState
 
             if (_waitTime <= 0)
             {
-                if (m_input.MouseLeftDown)
+                if (_telephone.Held)
                 {
                     m_game.CallManager.PickUpSFX();
                     _pickedUpPhone = true;
@@ -47,7 +59,13 @@ public class WaitForCallState : GameState
 
     public override void Exit()
     {
+        _telephone.OnClick -= OnTelephonePickup;
+        _telephone.Held = false;
+    }
 
+    private void OnTelephonePickup()
+    {
+        _telephone.Held = true;
     }
 
     private void PickupDelay()

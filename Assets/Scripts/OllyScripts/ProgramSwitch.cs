@@ -151,6 +151,7 @@ public class ProgramSwitch : MonoBehaviour
     }
     public void Telemarket()
     {
+        Debug.Log("Commercial started");
         ifRandomStart = false;
         telemChoiceTime = true;
 
@@ -184,6 +185,7 @@ public class ProgramSwitch : MonoBehaviour
                 PlayGifSound(programScript.gifPath);
                 StartCoroutine(EntProgramTimer());
                 Destroy(clonePlayer, 5.0f);
+
             }
         }
     }

@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Call State", menuName = "Scriptables/Game States/Call", order = 0)]
@@ -90,8 +89,6 @@ public class PhoneCallState : GameState
         }
         else
         {
-            m_callManager.Tick();
-
             if (m_input.MouseRightDown)
             {
                 if (m_player.Nod())
@@ -133,7 +130,7 @@ public class PhoneCallState : GameState
             if (m_clientManager.NoMoreClients)
                 m_game.ChangeState(2);
             else
-                m_game.ChangeState(0);
+                m_game.ChangeState(4);
         }
         else
             m_placeDelayTime -= Time.deltaTime;

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c4fa6099d4d5cc4e816b99555f2f633, type: 3}
   m_Name: CommercialState
   m_EditorClassIdentifier: Assembly-CSharp::CommercialState
-  _stateDuration: 10
+  _stateDuration: 12
   _commercialDelay: 5

@@ -1,12 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.HID;
-using UnityEngine.Windows;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private int m_startingGameState = 0;
+    [Space]
     [SerializeField] private GameState[] m_gameStates;
-    private int m_startingGameState = 0;
     private GameState m_gameState;
     private int m_gameStateID;
 
@@ -18,13 +18,18 @@ public class GameManager : MonoBehaviour
     private SFXManager m_sfxManager;
     private HUDManager m_HUDManager;
 
+    private ClickableTelephone m_telephone;
+    private ProgramSwitchScript m_switchScript;
+
     public CallManager CallManager => m_callManager;
     public ClientManager ClientManager => m_clientManager;
     public ChoiceManager ChoiceManager => m_choiceManager;
     public SFXManager SFXManager => m_sfxManager;
     public HUDManager HUDManager => m_HUDManager;
 
-    public ProgramSwitchScript SwitchScript { get; internal set; }
+    public ProgramSwitchScript TVSwitch => m_switchScript;
+    public ClickableTelephone Telephone => m_telephone;
+
 
     void Awake()
     {
@@ -37,6 +42,9 @@ public class GameManager : MonoBehaviour
         m_choiceManager = FindAnyObjectByType<ChoiceManager>();
         m_sfxManager = FindAnyObjectByType<SFXManager>();
         m_HUDManager = FindAnyObjectByType<HUDManager>();
+
+        m_switchScript = FindAnyObjectByType<ProgramSwitchScript>();
+        m_telephone = FindAnyObjectByType<ClickableTelephone>();
 
         foreach (var state in m_gameStates)
             state.Initialize(this, m_player, m_input);
@@ -51,6 +59,11 @@ public class GameManager : MonoBehaviour
     {
         m_gameState.Tick();
         m_input.Tick();
+
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            QuitGame();
+        }
     }
 
     public void OnStartGame()
@@ -75,5 +88,14 @@ public class GameManager : MonoBehaviour
 
 
         Debug.Log("Entering " + m_gameState.name);
+    }
+
+    private void QuitGame()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit ();
+#endif
     }
 }
