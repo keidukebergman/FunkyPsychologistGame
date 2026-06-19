@@ -782,10 +782,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ballons
       objectReference: {fileID: 0}
-    - target: {fileID: 729163277828593284, guid: a1c0f23f2d51d8641906908c35e73cf3, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6699413546471742015, guid: a1c0f23f2d51d8641906908c35e73cf3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.05405
