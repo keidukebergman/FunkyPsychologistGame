@@ -7,6 +7,8 @@ public class SFXManager : MonoBehaviour
 
     public static SFXManager Instance;
 
+    [SerializeField] private SFXRandom m_sfxNods;
+    [SerializeField] private float m_nodVolume = 3;
     [SerializeField] private SFXCollection m_sfxCollection;
     [Space]
     [SerializeField] private AudioMixerGroup m_sfxMixerGroup;
@@ -23,7 +25,11 @@ public class SFXManager : MonoBehaviour
     }
 
     static public void PlayMhmmSFX() => Instance.PlayMhmmSFX_Internal();
-    private void PlayMhmmSFX_Internal() => PlaySFX_Internal(m_sfxCollection[0].Clip, m_sfxCollection[0].Volume);
+    private void PlayMhmmSFX_Internal() {
+        // PlaySFX_Internal(m_sfxCollection[0].Clip, m_sfxCollection[0].Volume);
+        SFX nod = m_sfxNods;
+        PlaySFX_Internal(nod.Clip, m_nodVolume);
+    }
 
     static public void PlaySFX(AudioClip p_clip, float p_volume = 1, bool p_randomizePitch = false)
     {
