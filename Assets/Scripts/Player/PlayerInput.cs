@@ -67,16 +67,16 @@ public class PlayerInput
 
         SpacebarDown = Keyboard.current.spaceKey.wasPressedThisFrame;
 
-        Key0Down = Keyboard.current.numpad0Key.wasPressedThisFrame;
-        Key1Down = Keyboard.current.numpad1Key.wasPressedThisFrame;
-        Key2Down = Keyboard.current.numpad2Key.wasPressedThisFrame;
-        Key3Down = Keyboard.current.numpad3Key.wasPressedThisFrame;
-        Key4Down = Keyboard.current.numpad4Key.wasPressedThisFrame;
-        Key5Down = Keyboard.current.numpad5Key.wasPressedThisFrame;
-        Key6Down = Keyboard.current.numpad6Key.wasPressedThisFrame;
-        Key7Down = Keyboard.current.numpad7Key.wasPressedThisFrame;
-        Key8Down = Keyboard.current.numpad8Key.wasPressedThisFrame;
-        Key9Down = Keyboard.current.numpad9Key.wasPressedThisFrame;
+        Key0Down = Keyboard.current.numpad0Key.wasPressedThisFrame || Keyboard.current.digit0Key.wasPressedThisFrame;
+        Key1Down = Keyboard.current.numpad1Key.wasPressedThisFrame || Keyboard.current.digit1Key.wasPressedThisFrame;
+        Key2Down = Keyboard.current.numpad2Key.wasPressedThisFrame || Keyboard.current.digit2Key.wasPressedThisFrame;
+        Key3Down = Keyboard.current.numpad3Key.wasPressedThisFrame || Keyboard.current.digit3Key.wasPressedThisFrame;
+        Key4Down = Keyboard.current.numpad4Key.wasPressedThisFrame || Keyboard.current.digit4Key.wasPressedThisFrame;
+        Key5Down = Keyboard.current.numpad5Key.wasPressedThisFrame || Keyboard.current.digit5Key.wasPressedThisFrame;
+        Key6Down = Keyboard.current.numpad6Key.wasPressedThisFrame || Keyboard.current.digit6Key.wasPressedThisFrame;
+        Key7Down = Keyboard.current.numpad7Key.wasPressedThisFrame || Keyboard.current.digit7Key.wasPressedThisFrame;
+        Key8Down = Keyboard.current.numpad8Key.wasPressedThisFrame || Keyboard.current.digit8Key.wasPressedThisFrame;
+        Key9Down = Keyboard.current.numpad9Key.wasPressedThisFrame || Keyboard.current.digit9Key.wasPressedThisFrame;
     }
 
     private void ResetInput()
