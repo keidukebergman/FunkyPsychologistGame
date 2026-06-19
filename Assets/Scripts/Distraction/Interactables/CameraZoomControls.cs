@@ -5,6 +5,7 @@ public class CameraZoomControls : MonoBehaviour, Interactable
     [SerializeField] private float minimumFov, maximumFov = 70;
     [SerializeField] private float fovZoomSpeed = 20;
     float fovZoom = 55;
+    [SerializeField] private float tvStimulation = 0.2f;
 
     public bool isOneShot { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
@@ -31,12 +32,16 @@ public class CameraZoomControls : MonoBehaviour, Interactable
             fovZoom = minimumFov;
         }
 
-        if (fovZoom == minimumFov)
-        {
-            Debug.Log("Raycast firing");
             RaycastHit hit;
-            //TV Logic
-        }
+            if (Physics.Raycast(transform.position, transform.forward, out hit))
+            {
+                Interactable interactable = hit.transform.gameObject.GetComponent<InteractableTV>();
+                if (interactable != null)
+                {
+                    DistractionManager.instance.OnInteractWithPersistentInteractable(interactable, tvStimulation * ((1 + (maximumFov - fovZoom)) / minimumFov) * Time.deltaTime);
+                }
+            }
+
         GetComponent<Camera>().fieldOfView = Mathf.MoveTowards(GetComponent<Camera>().fieldOfView, fovZoom, fovZoomSpeed * Time.deltaTime);
     }
 }
