@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7532692733946175151
+--- !u!1 &4966439120478432781
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4833248922128755687}
-  - component: {fileID: 6821304298347014914}
-  - component: {fileID: 984862111257077150}
+  - component: {fileID: 6619244823297289291}
+  - component: {fileID: 1369367222331192400}
   m_Layer: 0
-  m_Name: GifCache
+  m_Name: GifDatabase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4833248922128755687
+--- !u!4 &6619244823297289291
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7532692733946175151}
+  m_GameObject: {fileID: 4966439120478432781}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,31 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6821304298347014914
+--- !u!114 &1369367222331192400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7532692733946175151}
-  m_Enabled: 1
+  m_GameObject: {fileID: 4966439120478432781}
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 939b90a9b9d894f448a6dc5b73c802cd, type: 3}
+  m_Script: {fileID: 11500000, guid: 273b6dc8695ca38458c5895d2fdac600, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GifCacheManager
---- !u!114 &984862111257077150
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7532692733946175151}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91cca4b59f108fb47ba497e6257b2d0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GifPreloader
-  gifsToLoad:
+  m_EditorClassIdentifier: Assembly-CSharp::GifDatabase
+  gifPaths:
   - /whitenoise.gif
   - /black-screen.gif
   - /ent1.gif
@@ -67,14 +54,12 @@ MonoBehaviour:
   - /ent5.gif
   - /ent6.gif
   - /ent7.gif
-  - /KaijuBadEnd.gif
   - /KaijuGoodEnd.gif
+  - /KaijuBadEnd.gif
   - /MrAngerIssuesBadEnd.gif
   - /MrAngerIssuesGoodEnd.gif
   - /MrBusinessBadEnd.gif
   - /MrBusinessGoodEnd.gif
-  - /MrFeministBadEnd.gif
-  - /MrFeministGoodEnd.gif
   - /MsSodermalmBadEnd.gif
   - /MsSodermalmGoodEnd.gif
   - /OtherTelePsychologistBadEnd.gif

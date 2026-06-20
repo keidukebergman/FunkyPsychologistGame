@@ -84,9 +84,9 @@ public class FatigueManager : MonoBehaviour
         isDrainingFatigue = false;
         print("You lost! Sleepy time!");
         OnSleep?.Invoke();
-        StartCoroutine(SleepyTime());
+        sleepRoutine = StartCoroutine(SleepyTime());
     }
-
+    Coroutine sleepRoutine = null;
     private void Awaken()
     {
         state = State.Lost;
@@ -127,6 +127,17 @@ public class FatigueManager : MonoBehaviour
         {
             fatigue = 0;
         }
+    }
+
+    public void ResetFatigue()
+    {
+        fatigue = 0;
+        DistractionManager.instance.StartCall();
+        if (sleepRoutine != null)
+        {
+            StopCoroutine(sleepRoutine);
+        }
+        EnterCall();
     }
 
     public void AddFatigue(float fatigue_value)

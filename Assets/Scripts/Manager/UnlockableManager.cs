@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class UnlockableManager : MonoBehaviour
@@ -30,5 +31,10 @@ public class UnlockableManager : MonoBehaviour
         {
             obj.SetActive(false);
         }
+    }
+
+    public void Restore()
+    {
+        DisableAll();
     }
 }

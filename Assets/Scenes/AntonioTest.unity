@@ -1607,64 +1607,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &704404047
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 704404049}
-  - component: {fileID: 704404048}
-  m_Layer: 0
-  m_Name: GifDatabase
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &704404048
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704404047}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 273b6dc8695ca38458c5895d2fdac600, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GifDatabase
-  gifPaths:
-  - /whitenoise.gif
-  - /ent1.gif
-  - /ent2.gif
-  - /ent3.gif
-  - /ent4.gif
-  - /ent5.gif
-  - /ent6.gif
-  - /ent7.gif
-  - /KaijuGoodEnd.gif
-  - /KaijuBadEnd.gif
-  - /black-screen.gif
-  - /newtons-cradle1.gif
-  - /newtons-cradle.gif
---- !u!4 &704404049
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 704404047}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &778002974
 GameObject:
   m_ObjectHideFlags: 0
@@ -2580,6 +2522,135 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c65f3405ba4e22f4b96d77e5ae7a1288, type: 3}
   m_PrefabInstance: {fileID: 1045398932}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1061258736
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: gifPaths.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[9]'
+      value: /piano.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[10]'
+      value: /standee.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[11]'
+      value: /balloons.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[12]'
+      value: /bobblehead.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[13]'
+      value: /fidget.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[14]'
+      value: /metronome.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[15]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[16]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[17]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[18]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[19]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[20]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[21]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[22]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[23]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 1369367222331192400, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: 'gifPaths.Array.data[24]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 4966439120478432781, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_Name
+      value: GifDatabase
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.52764
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.92016
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2.95973
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6619244823297289291, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: d139be9f8b5ce2040b64add10dd533f6, type: 3}
 --- !u!1 &1094517156
 GameObject:
   m_ObjectHideFlags: 0
@@ -2624,7 +2695,6 @@ Transform:
   - {fileID: 1649729916}
   - {fileID: 606004823}
   - {fileID: 871348524}
-  - {fileID: 1342594284}
   - {fileID: 408191177}
   - {fileID: 1762505037}
   - {fileID: 859386477}
@@ -3009,11 +3079,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!4 &1342594284 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3401711301242342120, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
-  m_PrefabInstance: {fileID: 4156775538590560835}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1342594285 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4633547184278668406, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
@@ -4710,6 +4775,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4110462440501095359, guid: 5e701e9294c5e2943a83b002a64305f5, type: 3}
+      propertyPath: fatigueGrowthPerSecond
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 4110462440501095359, guid: 5e701e9294c5e2943a83b002a64305f5, type: 3}
+      propertyPath: fatigueRestorationPerSecond
+      value: 0.06
+      objectReference: {fileID: 0}
     - target: {fileID: 5353647494130687817, guid: 5e701e9294c5e2943a83b002a64305f5, type: 3}
       propertyPath: m_Name
       value: Main Camera
@@ -5017,11 +5090,19 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1094517157}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3401711301242342120, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.18178003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401711301242342120, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.18178003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3401711301242342120, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.3699999
+      value: 13.075954
       objectReference: {fileID: 0}
     - target: {fileID: 3401711301242342120, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
       propertyPath: m_LocalPosition.y
@@ -5029,7 +5110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3401711301242342120, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.29
+      value: -2.4686434
       objectReference: {fileID: 0}
     - target: {fileID: 3401711301242342120, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
       propertyPath: m_LocalRotation.w
@@ -5063,6 +5144,10 @@ PrefabInstance:
       propertyPath: callManager
       value: 
       objectReference: {fileID: 1737947157}
+    - target: {fileID: 4633547184278668406, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
+      propertyPath: typingSpeed
+      value: 0.16
+      objectReference: {fileID: 0}
     - target: {fileID: 4633547184278668406, guid: 1879dfe6d3f8a5b45aa67a81ed445e46, type: 3}
       propertyPath: fatigueManager
       value: 
@@ -5516,6 +5601,86 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: gifsToLoad.Array.size
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[9]'
+      value: /piano.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[10]'
+      value: /standee.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[11]'
+      value: /balloons.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[12]'
+      value: /bobblehead.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[13]'
+      value: /fidget.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[14]'
+      value: /metronome.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[15]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[16]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[17]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[18]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[19]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[20]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[21]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[22]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[23]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[24]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[25]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
+    - target: {fileID: 984862111257077150, guid: f13078f89588f2344a86428dfed718d4, type: 3}
+      propertyPath: 'gifsToLoad.Array.data[26]'
+      value: /newtonsballs.gif
+      objectReference: {fileID: 0}
     - target: {fileID: 4833248922128755687, guid: f13078f89588f2344a86428dfed718d4, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5624,6 +5789,10 @@ PrefabInstance:
     - target: {fileID: 6184844011822894329, guid: a38df6585dd21b849a615e0fd5f5dac9, type: 3}
       propertyPath: m_Name
       value: Room
+      objectReference: {fileID: 0}
+    - target: {fileID: 6184844011822894329, guid: a38df6585dd21b849a615e0fd5f5dac9, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5756,7 +5925,6 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 704404049}
   - {fileID: 2210727328950352673}
   - {fileID: 2028066992}
   - {fileID: 7224784860808525372}
@@ -5769,6 +5937,8 @@ SceneRoots:
   - {fileID: 9019453678965255866}
   - {fileID: 1726003634}
   - {fileID: 1944094184}
+  - {fileID: 4156775538590560835}
+  - {fileID: 1061258736}
   - {fileID: 7179362941297463797}
   - {fileID: 1425815242}
   - {fileID: 871419113}

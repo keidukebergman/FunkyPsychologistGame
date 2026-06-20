@@ -42,6 +42,7 @@ public class PhoneCallState : GameState
 
         m_placingPhone = false;
         m_placeDelayTime = _placeDelay;
+        FellAsleep = false;
     }
 
     public override void Tick()
@@ -75,6 +76,7 @@ public class PhoneCallState : GameState
         if (FellAsleep)
         {
             m_callManager.PlaceSFX();
+            m_callManager.CallFinished();
             m_game.ChangeState(3);
             return;
         }

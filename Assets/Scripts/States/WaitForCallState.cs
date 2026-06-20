@@ -12,6 +12,7 @@ public class WaitForCallState : GameState
     private bool _pickedUpPhone;
 
     private ClickableTelephone _telephone;
+    private bool FellAsleep { get; set; }
 
     public override void Initialize(GameManager game, Player player, PlayerInput input)
     {
@@ -28,6 +29,15 @@ public class WaitForCallState : GameState
         _pickupDelayTime = _pickupDelay;
 
         _pickedUpPhone = false;
+
+        var fatigueManager = m_player.GetComponentInChildren<FatigueManager>();
+        fatigueManager.OnSleep += OnSleep;
+        FellAsleep = false;
+    }
+
+    private void OnSleep()
+    {
+        FellAsleep = true;
     }
 
     public override void Tick()
@@ -37,6 +47,11 @@ public class WaitForCallState : GameState
             PickupDelay();
         else
         {
+            if (FellAsleep)
+            {
+                m_game.ChangeState(3);
+                return;
+            }
 
             if (_waitTime <= 0)
             {

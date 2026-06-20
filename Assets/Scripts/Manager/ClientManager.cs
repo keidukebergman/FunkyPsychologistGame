@@ -15,10 +15,14 @@ public class ClientManager : MonoBehaviour
 
     private void Awake()
     {
+        ReInit();
+    }
+
+    public void ReInit()
+    {
         _waitingClients = new List<Client>();
         _waitingClients.AddRange(clients);
     }
-
 
     public Client PullClient() 
     {

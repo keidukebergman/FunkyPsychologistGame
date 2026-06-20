@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ProgramSwitchScript : MonoBehaviour
@@ -7,6 +8,8 @@ public class ProgramSwitchScript : MonoBehaviour
     public bool satisfaction = false;
     public bool commercial = false;
     public bool tvTurnedOn = false;
+
+    public bool restart = false;
 
     public void SwitchToNews()
     {
@@ -29,5 +32,10 @@ public class ProgramSwitchScript : MonoBehaviour
         afterCallSatisf = false;
         satisfaction = false;
         commercial = false;
+    }
+
+    public void RestartUnlockableOrder()
+    {
+        restart = true;
     }
 }

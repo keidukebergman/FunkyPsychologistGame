@@ -29,7 +29,9 @@ public class GifDatabase : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
 
+    private void Start() {
         PreloadAllGIFs();
     }
 

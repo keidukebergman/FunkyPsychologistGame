@@ -25,6 +25,12 @@ public class HUDManager : MonoBehaviour
         _failureGroup.alpha = 0.0f;
     }
 
+    public void Restore()
+    {
+        _victoryGroup.alpha = 0.0f;
+        _failureGroup.alpha = 0.0f;
+    }
+
     public void OnSpeechFinished(int progress, string[] choices)
     {
         _choiceGroup.PresentChoices(choices);

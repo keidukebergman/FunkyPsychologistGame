@@ -58,6 +58,13 @@ public class ProgramSwitch : MonoBehaviour
     $"commercial={clientsScript.commercial}, " +
     $"ent={entertainment}, " +
     $"switching={isSwitchingProgram}");
+
+        if (clientsScript.restart)
+        {
+            RestartDistr();
+            return;
+        }
+
         //If it's Kaiju time, then we do:
 
         if (clientsScript.callOngoing == true && clientsScript.afterCallSatisf == false)
@@ -126,6 +133,13 @@ public class ProgramSwitch : MonoBehaviour
         programScript.PlayGif(nameValuesEntertainment[entProgram]);
         StartCoroutine(EntProgramTimer(5.0f));
 
+    }
+
+    private void RestartDistr()
+    {
+        currentDist = 0;
+        distrToBuy = 0;
+        clientsScript.restart = false;
     }
 
     public void DistractionAppears()
@@ -223,11 +237,11 @@ public class ProgramSwitch : MonoBehaviour
             timeElapsed += Time.deltaTime;
             if (distractionAppeared == false)
             {
-                if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
-                {
+                /*if (Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1))
+                {*/
                     DistractionAppears();
                     distractionAppeared = true;
-                }
+                //}
             }
             if (timeElapsed >= maxWaitTime)
                 break;
