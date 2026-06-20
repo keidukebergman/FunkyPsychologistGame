@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class InteractableBobblehead : MonoBehaviour, Interactable
 {
-    public bool isOneShot { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
+
+    private bool _oneShota = true;
+    public bool isOneShot { get => _oneShota; set => _oneShota = value; }
     [SerializeField] private float stimulationValue = 0.1f;
     public void OnInteract(RaycastHit raycastHit)
     {
