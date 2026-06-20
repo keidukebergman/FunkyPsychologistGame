@@ -56,12 +56,17 @@ public class PhoneCallState : GameState
             {
                 DuringPhoneCall();
             }
+            if (m_input.EscapeKey)
+            {
+                m_callManager.CallFinished();
+            }
         }
         else PlaceDelay();
     }
 
     public override void Exit()
     {
+        m_hud.OnChoiceMade();
         m_callManager.StopCall();
     }
 
@@ -70,7 +75,6 @@ public class PhoneCallState : GameState
         if (FellAsleep)
         {
             m_callManager.PlaceSFX();
-            m_hud.OnChoiceMade();
             m_game.ChangeState(3);
             return;
         }
