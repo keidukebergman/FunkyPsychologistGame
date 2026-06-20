@@ -35,6 +35,7 @@ public class CallManager : MonoBehaviour
     private ChoiceManager _choiceManager;
 
     private Coroutine _speechCoroutine;
+    public string CurrentSubtitles;
 
     private void Awake()
     {
@@ -88,13 +89,17 @@ public class CallManager : MonoBehaviour
 
     private void PlayClientSpeech()
     {
+        CurrentSubtitles =  CurrentClient.Speeches[m_callClientSpeechIndex].Subtitles;
+        Debug.Log(CurrentSubtitles);
         m_clientSource.clip = CurrentClient.Speeches[m_callClientSpeechIndex].Clip;
         m_clientSource.Play();
 
         if (_speechCoroutine != null)
             StopCoroutine(_speechCoroutine);
         _speechCoroutine = StartCoroutine(WaitForSpeechEnding());
+        SpeechHasBegun?.Invoke(CurrentClient.Speeches[m_callClientSpeechIndex].Subtitles);
     }
+    public Action<string> SpeechHasBegun;
     private IEnumerator WaitForSpeechEnding()
     {
         // Wait a brief moment to let Unity register the .Play() state

@@ -110,7 +110,7 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Closeness: 2.46
     - _Cull: 2
-    - _Curvature: -2.1436784
+    - _Curvature: -2.0471306
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
@@ -128,7 +128,7 @@ Material:
     - _Parallax: 0.005
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Separation: 0.14559478
+    - _Separation: 0
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _Softness: 0.005

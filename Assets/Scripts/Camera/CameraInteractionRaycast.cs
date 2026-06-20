@@ -3,6 +3,14 @@ using UnityEngine;
 public class CameraInteractionRaycast : MonoBehaviour
 {
     bool holding = false;
+    private Camera playerCamera;
+
+    void Start()
+    {
+        if (playerCamera == null)
+            playerCamera = Camera.main;
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("Interact"))
@@ -20,7 +28,10 @@ public class CameraInteractionRaycast : MonoBehaviour
         {
             Debug.Log("Raycast firing");
             RaycastHit hit;
-            if(Physics.Raycast(transform.position, transform.forward, out hit))
+
+            Ray ray = playerCamera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
             {
                 Interactable interactable = hit.transform.gameObject.GetComponent<Interactable>();
                 if (interactable != null && !interactable.isOneShot)

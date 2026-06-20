@@ -179,14 +179,6 @@ public class CursorManager : MonoBehaviour
                 }
             }
             
-            if (hit.collider.TryGetComponent(out ClickableInteractable clickable) && Input.GetMouseButtonDown(0))
-            {
-                clickable.OnInteract(hit);
-            }
-            else if (hit.collider.TryGetComponent(out PersistentInteractable persistent) && Input.GetMouseButton(0))
-            {
-                persistent.OnInteract(new RaycastHit());
-            }
         }
         else
         {

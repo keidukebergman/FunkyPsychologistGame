@@ -24,8 +24,19 @@ public class TimedTextEntry : MonoBehaviour
     private string currentTypedText = "";
     private Coroutine glitchCoroutine;
     [SerializeField] private FatigueManager fatigueManager;
+    [SerializeField] private CallManager callManager;
+
+    public Client CurrentClient { get; private set; }
+
 
     private void Start()
+    {
+       var clientmanager = FindAnyObjectByType<CallManager>();
+        clientmanager.SpeechHasBegun += OnBegun;
+
+    }
+
+    private void OnBegun(string SpeechSubtitles)
     {
         StartCoroutine(TypeText());
         glitchCoroutine = StartCoroutine(GlitchRoutine());
@@ -39,7 +50,7 @@ public class TimedTextEntry : MonoBehaviour
         {
             char c = chars[i];
 
-            // ❌ Never touch spaces or punctuation
+            //Never touch spaces or punctuation
             if (!char.IsLetter(c))
                 continue;
 
@@ -47,7 +58,7 @@ public class TimedTextEntry : MonoBehaviour
             if (Random.value > corruption)
                 continue;
 
-            // 👉 ONLY replace with other letters (no symbols)
+            //replace with other letters (no symbols)
             bool upper = char.IsUpper(c);
 
             char newChar;
@@ -70,6 +81,9 @@ public class TimedTextEntry : MonoBehaviour
     {
         int startIndex = 0;
 
+        fullText = callManager.CurrentSubtitles;
+        
+        Debug.Log("Here, bitch:" + fullText);
         while (startIndex < fullText.Length)
         {
             int endIndex = Mathf.Min(startIndex + maxCharacters, fullText.Length);
@@ -100,7 +114,7 @@ public class TimedTextEntry : MonoBehaviour
                 (hasNext ? " ..." : "");
 
             textBox.text = "";
-
+            currentTypedText = "";
             foreach (char c in displayText)
             {
                 currentTypedText += c;

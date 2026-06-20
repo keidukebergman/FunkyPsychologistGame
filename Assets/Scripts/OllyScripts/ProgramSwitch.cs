@@ -42,14 +42,15 @@ public class ProgramSwitch : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        if (isSwitchingProgram)
+            return;
         Debug.Log(
     $"call={clientsScript.callOngoing}, " +
     $"after={clientsScript.afterCallSatisf}, " +
@@ -82,7 +83,7 @@ public class ProgramSwitch : MonoBehaviour
 
             currentClient = currentClient + 1;
             clientsScript.afterCallSatisf = false;
-            StartCoroutine(PlayAfterWhiteNoise(() => Satisfaction(clientNameEnd), maxWaitTime));
+            StartCoroutine(PlayAfterWhiteNoise(() => Satisfaction(clientNameEnd), 8.0f));
         }
         else if (clientsScript.callOngoing == false && clientsScript.afterCallSatisf == false && tvTurnedOn == false && clientsScript.commercial == true)
         {
@@ -109,7 +110,7 @@ public class ProgramSwitch : MonoBehaviour
 
         if (tvTurnedOn == true)
         {
-            tvTurnedOn = false;            
+            tvTurnedOn = false;
         }
 
 
@@ -123,7 +124,7 @@ public class ProgramSwitch : MonoBehaviour
         int entProgram = UnityEngine.Random.Range(0, 6);
         PlayGifSound("/variety-show.gif");
         programScript.PlayGif(nameValuesEntertainment[entProgram]);
-        StartCoroutine(EntProgramTimer());
+        StartCoroutine(EntProgramTimer(5.0f));
 
     }
 
@@ -148,6 +149,7 @@ public class ProgramSwitch : MonoBehaviour
         PlayGifSound("/whitenoise.gif");
 
         yield return new WaitForSeconds(switchWaitTime);
+        Debug.Log("WHITE NOISE " + Time.time);
     }
     public void Telemarket()
     {
@@ -167,28 +169,14 @@ public class ProgramSwitch : MonoBehaviour
     public void Satisfaction(string clientEnd)
     {
         ifRandomStart = false;
-        for (int i = 0; i < nameValuesArray.Length; i++)
-        {
-            if (nameValuesArray[i] == clientEnd)
-            {
-                entertainment = true;
-                Debug.Log(clientEnd);
-                clientsScript.enabled = false;
-                programScript.gifPath = nameValuesArray[i];
-                float t = Time.realtimeSinceStartup;
 
-                GameObject clonePlayer = Instantiate(myPrefabPlayer);
+        entertainment = true;
 
-                Debug.Log("Instantiate satisf took: " + (Time.realtimeSinceStartup - t));
-                //GetComponent<SingleGifPlayer>().enabled = false;
-                clonePlayer.GetComponent<SingleGifPlayer>().enabled = true;
-                PlayGifSound(programScript.gifPath);
-                StartCoroutine(EntProgramTimer());
-                Destroy(clonePlayer, 5.0f);
+        programScript.PlayGif(clientEnd);
+        PlayGifSound(clientEnd);
 
-            }
-        }
-    }
+        StartCoroutine(EntProgramTimer(8f));
+    } 
 
     private void PlayGifSound(string gifName)
     {
@@ -256,22 +244,32 @@ public class ProgramSwitch : MonoBehaviour
 
         yield break;
     }
-    IEnumerator EntProgramTimer()
+    IEnumerator EntProgramTimer(float waitAfter)
     {
-        yield return new WaitForSeconds(maxWaitTime);
+        yield return new WaitForSeconds(waitAfter);
         entertainment = false;
     }
 
     private IEnumerator PlayAfterWhiteNoise(System.Action nextAction, float waitAfter = 0f)
     {
+        if (isSwitchingProgram)
+        {
+            Debug.Log("Ignored PlayAfterWhiteNoise - already switching");
+            yield break;
+        }
+
         isSwitchingProgram = true;
 
-        yield return StartCoroutine(WhiteNoise());
+        Debug.Log("Switch START: " + Time.time);
+
+        yield return WhiteNoise();
 
         nextAction?.Invoke();
 
         if (waitAfter > 0f)
             yield return new WaitForSeconds(waitAfter);
+
+        Debug.Log("Switch END: " + Time.time);
 
         isSwitchingProgram = false;
     }
