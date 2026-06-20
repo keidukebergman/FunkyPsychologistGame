@@ -11,6 +11,8 @@ public class CallManager : MonoBehaviour
     [SerializeField] private AudioSource m_phonesource;
     [Space]
     [SerializeField] private AudioClip[] m_phoneSFX;
+    [Space]
+    [SerializeField] private TimedTextEntry SpeechBubble;
 
     public bool CallOver { get; set; }
     public bool CallIsOver => m_callClientSpeechIndex >= 1 && CallOver;
@@ -52,6 +54,8 @@ public class CallManager : MonoBehaviour
         ClientSatisfaction = startingSatisfaction;
         m_callClientSpeechIndex = 0;
 
+        SpeechBubble.Show();
+
         PlayClientSpeech();
     }
 
@@ -85,6 +89,7 @@ public class CallManager : MonoBehaviour
     public void CallFinished()
     {
         CallOver = true;
+        SpeechBubble.Hide();
     }
 
     private void PlayClientSpeech()

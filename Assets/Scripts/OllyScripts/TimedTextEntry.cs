@@ -28,11 +28,13 @@ public class TimedTextEntry : MonoBehaviour
 
     public Client CurrentClient { get; private set; }
 
+    private UIGroup uiGroup;
 
     private void Start()
     {
-       var clientmanager = FindAnyObjectByType<CallManager>();
-        clientmanager.SpeechHasBegun += OnBegun;
+       var callManager = FindAnyObjectByType<CallManager>();
+        callManager.SpeechHasBegun += OnBegun;
+        uiGroup = GetComponentInChildren<UIGroup>();
 
     }
 
@@ -152,6 +154,16 @@ public class TimedTextEntry : MonoBehaviour
 
             yield return new WaitForSeconds(glitchRefreshRate);
         }
+    }
+
+    public void Show()
+    {
+        uiGroup.Show();
+    }
+
+    public void Hide()
+    {
+        uiGroup.Hide();
     }
 }
 
