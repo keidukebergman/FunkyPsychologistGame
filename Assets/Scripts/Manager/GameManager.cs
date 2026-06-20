@@ -46,12 +46,12 @@ public class GameManager : MonoBehaviour
         m_switchScript = FindAnyObjectByType<ProgramSwitchScript>();
         m_telephone = FindAnyObjectByType<ClickableTelephone>();
 
-        foreach (var state in m_gameStates)
-            state.Initialize(this, m_player, m_input);
     }
 
     private void Start()
     {
+        foreach (var state in m_gameStates)
+            state.Initialize(this, m_player, m_input);
         OnStartGame();
     }
 
@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         m_gameState.Tick();
         m_input.Tick();
 
-        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Keyboard.current.backspaceKey.wasPressedThisFrame)
         {
             QuitGame();
         }
