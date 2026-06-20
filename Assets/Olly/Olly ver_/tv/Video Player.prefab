@@ -80,9 +80,13 @@ MonoBehaviour:
   - /ent3.gif
   - /ent4.gif
   nameValuesTelemarket:
-  - /newtons-cradle1.gif
-  - /newtons-cradle.gif
-  - /fidgetSpinner.gif
+  - /metronome.gif
+  - /bobblehead.gif
+  - /newtonsballs.gif
+  - /piano.gif
+  - /balloons.gif
+  - /fidget.gif
+  - /standee.gif
   nameValuesDistractions: []
   maxWaitTime: 5
   switchWaitTime: 2
@@ -96,8 +100,13 @@ MonoBehaviour:
   tvTurnedOn: 1
   switchingProgram: 1
   clientOrder:
-  - Kaiju
   - Boss
+  - Kaiju
+  - MrBusiness
+  - OtherPsychologist
+  - MsSodermalm
+  - MrFeminist
+  - MrAngerIssue
   clientNameEnd: null
   currentDist: 0
   currentClient: 0
@@ -118,3 +127,4 @@ MonoBehaviour:
   afterCallSatisf: 0
   satisfaction: 1
   commercial: 0
+  tvTurnedOn: 0

@@ -145,10 +145,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 730f2288a380c9b45a711272ff56834b, type: 3}
     - target: {fileID: 6170772247178824420, guid: c051c9eb65279f44183522c4c17d74ab, type: 3}
-      propertyPath: nameValuesTelemarket.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6170772247178824420, guid: c051c9eb65279f44183522c4c17d74ab, type: 3}
       propertyPath: nameValuesEntertainment.Array.size
       value: 8
       objectReference: {fileID: 0}

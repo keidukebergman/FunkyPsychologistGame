@@ -15,7 +15,7 @@ public class ProgramSwitch : MonoBehaviour
 
     public string[] nameValuesArray;
     public string[] nameValuesEntertainment;
-    public string[] nameValuesTelemarket = { "fidgetSpinner", "newtonsCradle" };
+    public string[] nameValuesTelemarket = { "/metronome.gif", "/bobblehead.gif", "/newtonsballs.gif", "/piano.gif", "/balloons.gif", "/fidget.gif", "/standee.gif" };
     public GameObject[] nameValuesDistractions = { };
 
     public float maxWaitTime = 5.0f;
@@ -29,7 +29,7 @@ public class ProgramSwitch : MonoBehaviour
     public bool distractionAppeared = false;
     public bool tvTurnedOn = true;
     public bool switchingProgram = true;
-    public string[] clientOrder = { "Kaiju", "Boss" };
+    public string[] clientOrder = { "Boss", "Kaiju", "MrBusiness", "OtherPsychologist", "MsSodermalm", "MrFeminist", "MrAngerIssue" };
     public string clientNameEnd = "null";
     public int currentDist = 0;
     public int currentClient = 0;
