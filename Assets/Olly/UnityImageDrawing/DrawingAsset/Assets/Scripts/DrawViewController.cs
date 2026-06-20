@@ -58,7 +58,7 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
     void Update() {
 
         //Debug.Log("Mouse Screen Pos: " + Input.mousePosition);
-        Debug.Log("Over UI: " + IsPointerOverUIObject());
+        //Debug.Log("Over UI: " + IsPointerOverUIObject());
 
         if (Input.GetMouseButtonDown(1))
         {
@@ -67,10 +67,10 @@ public class DrawViewController : MonoBehaviour, IBeginDragHandler, IDragHandler
             ResetTexture();
             previousDragPosition = Vector2.zero;
 
-            if (audioSource != null && clearSound != null)
+            /*if (audioSource != null && clearSound != null)
             {
                 audioSource.PlayOneShot(clearSound);
-            }
+            }*/
         }
     }
 

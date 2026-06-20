@@ -7,6 +7,10 @@ public class UnlockableManager : MonoBehaviour
     private void Awake()
     {
         CollectChildren();
+    }
+
+    private void Start()
+    {
         DisableAll();
     }
 

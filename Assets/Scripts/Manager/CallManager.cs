@@ -11,6 +11,8 @@ public class CallManager : MonoBehaviour
     [SerializeField] private AudioSource m_phonesource;
     [Space]
     [SerializeField] private AudioClip[] m_phoneSFX;
+    [Space]
+    [SerializeField] private TimedTextEntry SpeechBubble;
 
     public bool CallOver { get; set; }
     public bool CallIsOver => m_callClientSpeechIndex >= 1 && CallOver;
@@ -35,6 +37,7 @@ public class CallManager : MonoBehaviour
     private ChoiceManager _choiceManager;
 
     private Coroutine _speechCoroutine;
+    public string CurrentSubtitles;
 
     private void Awake()
     {
@@ -50,6 +53,8 @@ public class CallManager : MonoBehaviour
 
         ClientSatisfaction = startingSatisfaction;
         m_callClientSpeechIndex = 0;
+
+        SpeechBubble.Show();
 
         PlayClientSpeech();
     }
@@ -81,20 +86,25 @@ public class CallManager : MonoBehaviour
             PlayClientSpeech();
     }
 
-    private void CallFinished()
+    public void CallFinished()
     {
         CallOver = true;
+        SpeechBubble.Hide();
     }
 
     private void PlayClientSpeech()
     {
+        CurrentSubtitles =  CurrentClient.Speeches[m_callClientSpeechIndex].Subtitles;
+        Debug.Log(CurrentSubtitles);
         m_clientSource.clip = CurrentClient.Speeches[m_callClientSpeechIndex].Clip;
         m_clientSource.Play();
 
         if (_speechCoroutine != null)
             StopCoroutine(_speechCoroutine);
         _speechCoroutine = StartCoroutine(WaitForSpeechEnding());
+        SpeechHasBegun?.Invoke(CurrentClient.Speeches[m_callClientSpeechIndex].Subtitles);
     }
+    public Action<string> SpeechHasBegun;
     private IEnumerator WaitForSpeechEnding()
     {
         // Wait a brief moment to let Unity register the .Play() state
@@ -113,6 +123,8 @@ public class CallManager : MonoBehaviour
     public void StopCall()
     {
         m_clientSource.Stop();
+        if (_speechCoroutine != null)
+            StopCoroutine(_speechCoroutine);
     }
 
     public void OnSatisfied(float p_percent)

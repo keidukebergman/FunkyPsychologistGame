@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -17,15 +17,75 @@ public class TimedTextEntry : MonoBehaviour
     [SerializeField] private float typingSpeed = 0.03f;
     [SerializeField] private float pauseBetweenPages = 1f;
 
+
+    [SerializeField] private float maxCorruption = 100f;
+    [SerializeField] private float glitchRefreshRate = 0.05f;
+
+    private string currentTypedText = "";
+    private Coroutine glitchCoroutine;
+    [SerializeField] private FatigueManager fatigueManager;
+    [SerializeField] private CallManager callManager;
+
+    public Client CurrentClient { get; private set; }
+
+    private UIGroup uiGroup;
+
     private void Start()
     {
+       var callManager = FindAnyObjectByType<CallManager>();
+        callManager.SpeechHasBegun += OnBegun;
+        uiGroup = GetComponentInChildren<UIGroup>();
+
+    }
+
+    private void OnBegun(string SpeechSubtitles)
+    {
         StartCoroutine(TypeText());
+        glitchCoroutine = StartCoroutine(GlitchRoutine());
+    }
+
+    private string GlitchString(string original, float corruption)
+    {
+        char[] chars = original.ToCharArray();
+
+        for (int i = 0; i < chars.Length; i++)
+        {
+            char c = chars[i];
+
+            //Never touch spaces or punctuation
+            if (!char.IsLetter(c))
+                continue;
+
+            // chance of corruption
+            if (Random.value > corruption)
+                continue;
+
+            //replace with other letters (no symbols)
+            bool upper = char.IsUpper(c);
+
+            char newChar;
+
+            do
+            {
+                newChar = (char)Random.Range('a', 'z' + 1);
+                if (upper)
+                    newChar = char.ToUpper(newChar);
+
+            } while (newChar == c); // avoid replacing with itself
+
+            chars[i] = newChar;
+        }
+
+        return new string(chars);
     }
 
     IEnumerator TypeText()
     {
         int startIndex = 0;
 
+        fullText = callManager.CurrentSubtitles;
+        
+        Debug.Log("Here, bitch:" + fullText);
         while (startIndex < fullText.Length)
         {
             int endIndex = Mathf.Min(startIndex + maxCharacters, fullText.Length);
@@ -56,10 +116,11 @@ public class TimedTextEntry : MonoBehaviour
                 (hasNext ? " ..." : "");
 
             textBox.text = "";
-
+            currentTypedText = "";
             foreach (char c in displayText)
             {
-                textBox.text += c;
+                currentTypedText += c;
+                textBox.text = currentTypedText;
                 yield return new WaitForSeconds(typingSpeed);
             }
 
@@ -77,6 +138,32 @@ public class TimedTextEntry : MonoBehaviour
                 startIndex++;
             }
         }
+    }
+    private IEnumerator GlitchRoutine()
+    {
+        while (true)
+        {
+            if (!string.IsNullOrEmpty(currentTypedText))
+            {
+                //corruption -- variable from fatigue
+                float corruption =
+                    Mathf.Clamp01(fatigueManager.GetFatigue() / maxCorruption);
+
+                textBox.text = GlitchString(currentTypedText, corruption);
+            }
+
+            yield return new WaitForSeconds(glitchRefreshRate);
+        }
+    }
+
+    public void Show()
+    {
+        uiGroup.Show();
+    }
+
+    public void Hide()
+    {
+        uiGroup.Hide();
     }
 }
 

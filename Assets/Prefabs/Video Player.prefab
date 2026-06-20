@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 141c94b6c24e6944b902b576ef538bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SingleGifPlayer
-  gifPath: /godzilla-kaiju.gif
   renderMode: 0
   targetImage: {fileID: 0}
   targetRenderer: {fileID: 0}
+  gifPath: /godzilla-kaiju.gif

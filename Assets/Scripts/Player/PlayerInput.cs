@@ -33,6 +33,7 @@ public class PlayerInput
     public bool Key7Down { get; set; }
     public bool Key8Down { get; set; }
     public bool Key9Down { get; set; }
+    public bool EscapeKey { get; set; }
 
     public float MouseDelta { get; set; }
 
@@ -77,6 +78,8 @@ public class PlayerInput
         Key7Down = Keyboard.current.numpad7Key.wasPressedThisFrame || Keyboard.current.digit7Key.wasPressedThisFrame;
         Key8Down = Keyboard.current.numpad8Key.wasPressedThisFrame || Keyboard.current.digit8Key.wasPressedThisFrame;
         Key9Down = Keyboard.current.numpad9Key.wasPressedThisFrame || Keyboard.current.digit9Key.wasPressedThisFrame;
+
+        EscapeKey = Keyboard.current.escapeKey.wasPressedThisFrame;
     }
 
     private void ResetInput()
