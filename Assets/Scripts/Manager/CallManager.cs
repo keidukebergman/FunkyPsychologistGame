@@ -82,7 +82,7 @@ public class CallManager : MonoBehaviour
             PlayClientSpeech();
     }
 
-    private void CallFinished()
+    public void CallFinished()
     {
         CallOver = true;
     }
@@ -118,6 +118,8 @@ public class CallManager : MonoBehaviour
     public void StopCall()
     {
         m_clientSource.Stop();
+        if (_speechCoroutine != null)
+            StopCoroutine(_speechCoroutine);
     }
 
     public void OnSatisfied(float p_percent)

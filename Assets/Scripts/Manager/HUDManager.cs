@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class HUDManager : MonoBehaviour
@@ -7,6 +8,10 @@ public class HUDManager : MonoBehaviour
     [Space]
     [SerializeField] private CanvasGroup _victoryGroup;
     [SerializeField] private CanvasGroup _failureGroup;
+
+    [SerializeField] private Animator _introAnimator;
+
+    private readonly int PLAY_ID = Animator.StringToHash("Play");
 
     public void ShowFailure()
     {
@@ -27,5 +32,10 @@ public class HUDManager : MonoBehaviour
     public void OnChoiceMade()
     {
         _choiceGroup.OnChoiceMade();
+    }
+
+    public void PlayIntro()
+    {
+        _introAnimator.SetTrigger(PLAY_ID);
     }
 }
